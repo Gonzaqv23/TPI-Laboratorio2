@@ -1,0 +1,15 @@
+Golden Retriever,1
+Pug,0
+Pastor Australiano,1
+Husky Siberiano,1
+Cocker,0
+Border Collie,1
+Shiba Inu,0
+Bichon Maltes,1
+Terrier,0
+Cairn Terrier,1
+Persa,1
+Siames,0
+Bengali,1
+Maine Coon,0
+Angora,1

@@ -1,16 +1,24 @@
-# This is a sample Python script.
+from Raza import Raza
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+lista_razas = []
+
+def cargarRazas():
+    with open("razas.txt") as file:
+        lineas = file.readlines()
+    for linea in lineas:
+        nombre, estado = linea.strip().split(",")
+        lista_razas.append(Raza(nombre,int(estado)))
+def mostrarRazas():
+    for raza in lista_razas:
+        print(raza)
+
+def main():
+    cargarRazas()
+    mostrarRazas()
+    nueva_raza = Raza("Pastor Aleman", 1)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
