@@ -1,5 +1,6 @@
 class Raza:
-    def __init__(self, nombre="", estado=1):
+    def __init__(self, codigo, nombre="", estado=1):
+        self.codigo = codigo
         self.nombre = nombre
         self.estado = estado
 
