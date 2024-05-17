@@ -15,7 +15,17 @@ def mostrarRazas():
 def main():
     cargarRazas()
     mostrarRazas()
-    nueva_raza = Raza("Pastor Aleman", 1)
+    opcion = int(input("Bienvevido. Ingrese la opcion deseada:\n"
+                       "1 - Listado Mascotas Activas\n"
+                       "2 - Listado Tratamientos\n"
+                       "3 - Listado Diagnosticos\n"
+                       "4 - Listado Vacunas\n"
+                       "5 - Listado Razas\n"
+                       "6 - Listado Veterinarios\n"
+                       "7 - Listado Clientes\n"
+                       "8 - Mostrar Ficha Medica\n"
+                       "9 - Consultar cantidad de Mascotas de un Cliente\n"
+                       "10 - "))
 
 
 
