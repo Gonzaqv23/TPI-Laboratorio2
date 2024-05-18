@@ -1,0 +1,10 @@
+1,Moquillo canino
+2,Parvovirus
+3,Hepatitis infecciosa canina
+4,Leptospirosis
+5,Rabia
+6,Tos de las perreras
+7,Babesiosis
+8,Enfermedad de Lyme
+9,Leishmaniosis
+10,Tétanos

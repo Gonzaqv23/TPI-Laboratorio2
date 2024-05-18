@@ -23,3 +23,36 @@ class FichaMedica:
 
     def __repr__(self):
         return f"Ficha Medica de {self.mascota}"
+
+class Diagnostico:
+    def __init__(self, codigo, descripcion):
+        self.codigo = codigo
+        self.descripcion = descripcion
+
+    def __str__(self):
+        return self.descripcion
+
+    def __repr__(self):
+        return self.descripcion
+
+class Tratamiento:
+    def __init__(self, codigo, descripcion):
+        self.codigo = codigo
+        self.descripcion = descripcion
+
+    def __str__(self):
+        return self.descripcion
+
+    def __repr__(self):
+        return self.descripcion
+
+class Vacuna:
+    def __init__(self, codigo, descripcion):
+        self.codigo = codigo
+        self.descripcion = descripcion
+
+    def __str__(self):
+        return self.descripcion
+
+    def __repr__(self):
+        return self.descripcion

@@ -1,0 +1,5 @@
+1,fecha vacuna
+2,esguince
+3,gastroenteritis
+4,parasitos
+5,infeccion

@@ -1,0 +1,5 @@
+1,Dosis Vacuna
+2,aplicar yeso
+3,administrar pastilla
+4,aplicar inyeccion
+5,aplicar crema
