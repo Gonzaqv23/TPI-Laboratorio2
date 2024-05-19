@@ -1,6 +1,6 @@
 class Consulta:
-    def __init__(self, cod, masc, vet, diag, trat, vac):
-        self.codigo = cod
+    def __init__(self, codigo, masc, vet, diag, trat, vac):
+        self.codigo = codigo
         self.mascota = masc
         self.veterinario = vet
         self.diagnostico = diag
@@ -14,15 +14,15 @@ class Consulta:
         return f"{self.codigo} de {self.mascota}"
 
 class FichaMedica:
-    def __init__(self, cod, masc):
-        self.codigo = cod
-        self.mascota = masc
+    def __init__(self, codigo, consulta):
+        self.codigo = codigo
+        self.consulta = consulta
 
     def __str__(self):
-        return f"Ficha Medica de {self.mascota}"
+        return f"{self.consulta}"
 
     def __repr__(self):
-        return f"Ficha Medica de {self.mascota}"
+        return f"{self.consulta}"
 
 class Diagnostico:
     def __init__(self, codigo, descripcion):

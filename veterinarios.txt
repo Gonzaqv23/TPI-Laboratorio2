@@ -1,2 +1,12 @@
 1,Manuel Ocampo,17430
 2,Lara Gomez,17845
+11,Martin Gomez,17301
+32,Valeria Torres,17402
+43,Diego Rodriguez,17603
+65,Sofia Lopez,17704
+87,Ana Martinez,17085
+19,Juan Sanchez,17036
+28,Laura Fernandez,17207
+76,Carlos Perez,17088
+98,Maria Gonzalez,17909
+10,Andres Romero,17210
