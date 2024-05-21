@@ -6,6 +6,7 @@ class Consulta:
         self.diagnostico = diag
         self.tratamiento = trat
         self.vacuna = vac
+        
 
     def __str__(self):
         return f"{self.codigo} de {self.mascota}"
