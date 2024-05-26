@@ -52,15 +52,15 @@ def cargarPropietarios():
     with open("propietarios.txt") as file:
         lineas = file.readlines()
     for linea in lineas:
-        codigo, nombre, telefono = linea.strip().split(",")
-        lista_proietarios.append(Propietario(int(codigo),nombre,telefono))
+        codigo, nombre, estado, telefono, num_mascotas = linea.strip().split(",")
+        lista_proietarios.append(Propietario(int(codigo),nombre,int(estado),telefono, int(num_mascotas)))
 
 def cargarVeterinarios():
     with open("veterinarios.txt") as file:
         lineas = file.readlines()
     for linea in lineas:
-        codigo, nombre, legajo = linea.strip().split(",")
-        lista_veterinarios.append(Veterinario(int(codigo),nombre,legajo))
+        codigo, nombre, estado, legajo = linea.strip().split(",")
+        lista_veterinarios.append(Veterinario(int(codigo),nombre,int(estado),legajo))
 
 def cargarMascotas():
     with open("mascotas.txt") as file:

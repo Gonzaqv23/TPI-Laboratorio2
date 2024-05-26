@@ -1,11 +1,23 @@
 class Consulta:
-    def __init__(self, codigo, masc, vet, diag, trat, vac):
+    def __init__(self, codigo, masc, prop, vet, diag, trat, vac, fecha, descripcion):
         self.codigo = codigo
         self.mascota = masc
+        self.propietario = prop
         self.veterinario = vet
         self.diagnostico = diag
         self.tratamiento = trat
         self.vacuna = vac
+        self.fecha = fecha
+        self.descripcion = descripcion
+
+    def dar_alta_consulta(self):
+        pass
+
+    def modificar_consulta(self):
+        pass
+
+    def dar_baja_consulta(self):
+        pass
 
     def __str__(self):
         return f"{self.codigo} de {self.mascota}"
@@ -14,9 +26,22 @@ class Consulta:
         return f"{self.codigo} de {self.mascota}"
 
 class FichaMedica:
+<<<<<<< HEAD
     def __init__(self, codigo, consulta=None):
         self.codigo = codigo
         self.consulta = [consulta]
+=======
+    def __init__(self, codigo, consulta, vet, masc, diag, trat, vac, fecha, descripcion):
+        self.codigo = codigo
+        self.consulta = consulta
+        self.veterinario = vet
+        self.mascota = masc
+        self.diagnostico = diag
+        self.tratamiento = trat
+        self.vacuna = vac
+        self.fecha = fecha
+        self.descripcion = descripcion
+>>>>>>> b9b2bea1e5833438f81bb30178e6e06f70696108
 
     def __str__(self):
         return f"{self.consulta}"
@@ -24,10 +49,28 @@ class FichaMedica:
     def __repr__(self):
         return f"{self.consulta}"
 
+    def dar_alta_ficha_meidca(self):
+        pass
+
+    def modificar_ficha_medica(self):
+        pass
+
+    def dar_baja_ficha_medica(self):
+        pass
+
 class Diagnostico:
     def __init__(self, codigo, descripcion):
         self.codigo = codigo
         self.descripcion = descripcion
+
+    def dar_alta_diagnostico(self):
+        pass
+
+    def modificar_diagnostico(self):
+        pass
+
+    def dar_baja_diagnostico(self):
+        pass
 
     def __str__(self):
         return self.descripcion
@@ -40,6 +83,15 @@ class Tratamiento:
         self.codigo = codigo
         self.descripcion = descripcion
 
+    def dar_alta_tratamiento(self):
+        pass
+
+    def modificar_tratmiento(self):
+        pass
+
+    def dar_baja_tratamiento(self):
+        pass
+
     def __str__(self):
         return self.descripcion
 
@@ -50,6 +102,15 @@ class Vacuna:
     def __init__(self, codigo, descripcion):
         self.codigo = codigo
         self.descripcion = descripcion
+
+    def dar_alta_vacuna(self):
+        pass
+
+    def modificar_vacuna(self):
+        pass
+
+    def dar_baja_vacuna(self):
+        pass
 
     def __str__(self):
         return self.descripcion
