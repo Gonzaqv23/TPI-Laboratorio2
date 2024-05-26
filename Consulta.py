@@ -14,9 +14,9 @@ class Consulta:
         return f"{self.codigo} de {self.mascota}"
 
 class FichaMedica:
-    def __init__(self, codigo, consulta):
+    def __init__(self, codigo, consulta=None):
         self.codigo = codigo
-        self.consulta = consulta
+        self.consulta = [consulta]
 
     def __str__(self):
         return f"{self.consulta}"

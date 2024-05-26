@@ -17,8 +17,8 @@ def cargarRazas():
     with open("razas.txt") as file:
         lineas = file.readlines()
     for linea in lineas:
-        nombre, estado = linea.strip().split(",")
-        lista_razas.append(Raza(nombre,int(estado)))
+        codigo, nombre, estado = linea.strip().split(",")
+        lista_razas.append(Raza(int(codigo),nombre,int(estado)))
 
 def cargarEspecies():
     with open("especies.txt") as file:
@@ -99,7 +99,17 @@ def mostrarInfo(lista):
     for item in lista:
         print(item)
 
-def mostrarListado(opcion):
+def mostrarListado(lista):
+    for i in lista:
+        print(i)
+
+def darDeAlta(item, lista):
+    pass
+
+def modificar(item, lista):
+    pass
+
+def darDeBaja(item, lista):
     pass
 
 def main():
@@ -112,6 +122,7 @@ def main():
     cargarVeterinarios()
     cargarMascotas()
     cargarConsultas()
+    cargarFichaMedica()
     opcion = int(input("Bienvevido. Ingrese la opcion deseada:\n"
                        "1 - Listado Mascotas Activas\n"
                        "2 - Listado Tratamientos\n"
@@ -126,34 +137,48 @@ def main():
                        "11 - Ranking de Diagnosticos\n"
                        "12 - Cantidad de Razas por Diagnostico\n"
                        "13 - Salir\n"))
-    while opcion > 0:
+    while opcion >= 0:
         if opcion == 1:
-            mostrarListado()
-            break
+            mostrarListado(lista_mascotas)
+            opcion = 0
         if opcion == 2:
-            pass
-            break
+            mostrarListado(lista_tratamientos)
+            opcion = 0
         if opcion == 3:
-            pass
-            break
+            mostrarListado(lista_diagnosticos)
+            opcion = 0
         if opcion == 4:
-            pass
-            break
+            mostrarListado(lista_vacunas)
+            opcion = 0
         if opcion == 5:
-            pass
-            break
+            mostrarListado(lista_razas)
+            opcion = 0
         if opcion == 6:
-            pass
-            break
+            mostrarListado(lista_veterinarios)
+            opcion = 0
         if opcion == 7:
-            pass
-            break
+            mostrarListado(lista_fichasMedicas)
+            opcion = 0
         if opcion == 8:
-            print("Muchas Gracias. Hasta Pronto!!")
+            pass
+            opcion = 0
+        if opcion == 9:
+            pass
+            opcion = 0
+        if opcion == 10:
+            pass
+            opcion = 0
+        if opcion == 11:
+            pass
+            opcion = 0
+        if opcion == 12:
+            pass
+            opcion = 0
+        if opcion == 13:
+            print("Muchas Gracias. Hasta pronto!!")
             break
         else:
-            print("Ingrese opcion correcta")
-            opcion = int(input("Bienvevido. Ingrese la opcion deseada:\n"
+            opcion = int(input("Ingrese la opcion deseada:\n"
                                "1 - Listado Mascotas Activas\n"
                                "2 - Listado Tratamientos\n"
                                "3 - Listado Diagnosticos\n"
