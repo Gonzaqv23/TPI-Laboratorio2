@@ -26,22 +26,9 @@ class Consulta:
         return f"{self.codigo} de {self.mascota}"
 
 class FichaMedica:
-<<<<<<< HEAD
     def __init__(self, codigo, consulta=None):
         self.codigo = codigo
         self.consulta = [consulta]
-=======
-    def __init__(self, codigo, consulta, vet, masc, diag, trat, vac, fecha, descripcion):
-        self.codigo = codigo
-        self.consulta = consulta
-        self.veterinario = vet
-        self.mascota = masc
-        self.diagnostico = diag
-        self.tratamiento = trat
-        self.vacuna = vac
-        self.fecha = fecha
-        self.descripcion = descripcion
->>>>>>> b9b2bea1e5833438f81bb30178e6e06f70696108
 
     def __str__(self):
         return f"{self.consulta}"
