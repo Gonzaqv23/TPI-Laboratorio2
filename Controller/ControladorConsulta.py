@@ -2,22 +2,25 @@ from Model.Consulta import Consulta
 from View.VistaConsulta import VistaConsulta
 
 class ControladorConsulta:
-    def __init__(self):
+    def __init__(self, controladorMascota, controladorTratamiento, controladorVeterinario):
         self.vista = VistaConsulta()
+        self.controladorMascota = controladorMascota
+        self.controladorTratamiento = controladorTratamiento
+        self.controladorVeterinario =controladorVeterinario
         self.listaConsultas = []
 
-    def cargarConsultas(self):
-        with open("consultas.txt") as file:
-            lineas = file.readlines()
-        for linea in lineas:
-            datos = linea.strip().split(",")
-            codigo = datos[0]
-            masc = buscarObjeto(lista_mascotas, datos[1])
-            vet = buscarObjeto(lista_veterinarios, datos[2])
-            diag = buscarObjeto(lista_diagnosticos, datos[3])
-            trat = buscarObjeto(lista_diagnosticos, datos[4])
-            vac = buscarObjeto(lista_diagnosticos, datos[5])
-            self.listaConsultas.append(Consulta(int(codigo), masc, vet, diag, trat, vac))
+    # def cargarConsultas(self):
+    #     with open("consultas.txt") as file:
+    #         lineas = file.readlines()
+    #     for linea in lineas:
+    #         datos = linea.strip().split(",")
+    #         codigo = datos[0]
+    #         masc = buscarObjeto(lista_mascotas, datos[1])
+    #         vet = buscarObjeto(lista_veterinarios, datos[2])
+    #         diag = buscarObjeto(lista_diagnosticos, datos[3])
+    #         trat = buscarObjeto(lista_diagnosticos, datos[4])
+    #         vac = buscarObjeto(lista_diagnosticos, datos[5])
+    #         self.listaConsultas.append(Consulta(int(codigo), masc, vet, diag, trat, vac))
 
     def buscarObjeto(self, lista, objeto):
         for obj in lista:

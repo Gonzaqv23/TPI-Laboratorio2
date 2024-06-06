@@ -27,3 +27,6 @@ class ControladorTratamiento:
         for linea in lineas:
             codigo, descripcion = linea.strip().split(",")
             self.listaTratamientos.append(Tratamiento(int(codigo), descripcion))
+
+    def iniciar(self):
+        pass

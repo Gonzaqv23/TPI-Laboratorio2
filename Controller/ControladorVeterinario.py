@@ -12,3 +12,6 @@ class ControladorVeterinario:
         for linea in lineas:
             codigo, nombre, estado, legajo = linea.strip().split(",")
             self.listaVeterinarios.append(Veterinario(int(codigo), nombre, legajo))
+
+    def iniciar(self):
+        pass

@@ -36,3 +36,6 @@ class ControladorMascota:
     #     for linea in lineas:
     #         codigo, nombre, estado = linea.strip().split(",")
     #         lista_razas.append(Raza(int(codigo), nombre, int(estado)))
+
+    def iniciar(self):
+        pass
