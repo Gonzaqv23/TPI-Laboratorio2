@@ -1,0 +1,2 @@
+class VistaTratamiento:
+    pass

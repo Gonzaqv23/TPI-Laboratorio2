@@ -1,0 +1,2 @@
+class VistaConsulta:
+    pass

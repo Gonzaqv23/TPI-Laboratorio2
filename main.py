@@ -1,6 +1,6 @@
-from Mascota import Mascota, Raza, Especie
-from Consulta import Consulta, FichaMedica, Diagnostico, Tratamiento, Vacuna
-from Persona import Propietario, Veterinario
+from Model.Mascota import Mascota, Raza, Especie
+from Model.Consulta import Consulta, Diagnostico, Tratamiento, Vacuna
+from Model.Veterinario import Propietario, Veterinario
 
 lista_razas = []
 lista_especies = []
@@ -52,8 +52,8 @@ def cargarPropietarios():
     with open("propietarios.txt") as file:
         lineas = file.readlines()
     for linea in lineas:
-        codigo, nombre, estado, telefono, num_mascotas = linea.strip().split(",")
-        lista_proietarios.append(Propietario(int(codigo),nombre,int(estado),telefono, int(num_mascotas)))
+        codigo, nombre, telefono = linea.strip().split(",")
+        lista_proietarios.append(Propietario(int(codigo),nombre,telefono))
 
 def cargarVeterinarios():
     with open("veterinarios.txt") as file:
