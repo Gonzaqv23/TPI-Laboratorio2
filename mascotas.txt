@@ -1,1 +1,15 @@
-1,Mora,1,1,1
+001,Pancho, uan Perez,Bulldog,Perro,1
+002,Ran Tan Plan,Maria Rodriguez,Beagle,Perro,0
+003,Beethoven,Carlos Garcia,San Bernardo,Perro,1
+004,Bruno,Laura Martinez,Labrador,Perro,1
+005,Niebla,Andres Lopez,Husky Siberiano,Perro,0
+006,Pluto,Marta Fernandez,Dalmata,Perro,1
+007,Rex,Diego Gonzalez,Pastor Aleman,Perro,1
+008,Ayudante de Santa Claus,Ana Torres,Caniche,Perro,0
+009,Scooby Doo,Pablo Ramirez,Gran Danes,Perro,1
+010,Dama y Golfo,Sofia Morales,Cocker Spaniel,Perro,0
+011,Snoopy,Luis Silva,Beagle,Perro,1
+012,Milu,Patricia Perez,Fox Terrier,Perro,1
+013,Brian,Javier Castro,Basset Hound,Perro,1
+014,Goofy,Carolina Ortiz,Galgo,Perro,0
+015,Odie,Raul Sanchez,Siames,Gato,1

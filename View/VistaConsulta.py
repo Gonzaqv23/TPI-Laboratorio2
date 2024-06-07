@@ -25,3 +25,7 @@ class VistaConsulta:
                   "0 - Salir\n\n")
             opcion = input("Elija opcion deseada: ")
             return opcion
+
+      def mostrarLista(self, lista):
+            for i in lista:
+                  print(i)

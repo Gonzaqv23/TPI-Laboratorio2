@@ -31,7 +31,7 @@ class ControladorConsulta:
         while True:
             opcion = self.vista.mostrarMenu()
             if opcion == "1":
-                pass
+                self.vista.mostrarLista(self.controladorMascota.listaMascotas)
             elif opcion == "2":
                 pass
             elif opcion == "3":
