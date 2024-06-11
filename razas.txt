@@ -10,6 +10,3 @@
 10,Cairn Terrier,1
 11,Persa,1
 12,Siames,0
-13,Bengali,1
-14,Maine Coon,0
-15,Angora,1

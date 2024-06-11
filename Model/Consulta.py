@@ -1,14 +1,12 @@
 class Consulta:
-    def __init__(self, codigo, masc, prop, vet, diag, trat, vac, fecha, descripcion):
+    def __init__(self, codigo, masc, vet, diag, trat, vac, fecha):
         self.codigo = codigo
         self.mascota = masc
-        self.propietario = prop
         self.veterinario = vet
         self.diagnostico = diag
         self.tratamiento = trat
         self.vacuna = vac
         self.fecha = fecha
-        self.descripcion = descripcion
 
     def dar_alta_consulta(self):
         pass
@@ -20,10 +18,12 @@ class Consulta:
         pass
 
     def __str__(self):
-        return f"{self.codigo} de {self.mascota}"
+        return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}\n"
+                f"{self.tratamiento}, {self.vacuna}, {self.fecha}\n")
 
     def __repr__(self):
-        return f"{self.codigo} de {self.mascota}"
+        return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}\n"
+                f"{self.tratamiento}, {self.vacuna}, {self.fecha}\n")
 
 class FichaMedica:
     def __init__(self, codigo, consulta=None):

@@ -2,10 +2,15 @@ from Controller.ControladorConsulta import ControladorConsulta
 from Controller.ControladorMascota import ControladorMascota
 from Controller.ControladorTratamiento import ControladorTratamiento
 from Controller.ControladorVeterinario import ControladorVeterinario
+from Controller.ControladorRaza import ControladorRaza
+from Controller.ControladorPropietario import ControladorPropietario
 
 def main():
-
-    controladorMascota = ControladorMascota()
+    controladorPropietario = ControladorPropietario()
+    controladorPropietario.iniciar()
+    controladorRaza = ControladorRaza()
+    controladorRaza.iniciar()
+    controladorMascota = ControladorMascota(controladorRaza,controladorPropietario)
     controladorMascota.iniciar()
     controladorTratamiento = ControladorTratamiento()
     controladorTratamiento.iniciar()

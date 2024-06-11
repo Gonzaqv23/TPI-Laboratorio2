@@ -6,7 +6,7 @@ class Tratamiento:
         self.descripcion = descripcion
 
     def __str__(self):
-        return self.descripcion
+        return f"Tratamiento: {self.descripcion}"
 
     def __repr__(self):
-        return self.descripcion
+        return f"Tratamiento: {self.descripcion}"

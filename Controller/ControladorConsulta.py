@@ -9,18 +9,19 @@ class ControladorConsulta:
         self.controladorVeterinario =controladorVeterinario
         self.listaConsultas = []
 
-    # def cargarConsultas(self):
-    #     with open("consultas.txt") as file:
-    #         lineas = file.readlines()
-    #     for linea in lineas:
-    #         datos = linea.strip().split(",")
-    #         codigo = datos[0]
-    #         masc = buscarObjeto(lista_mascotas, datos[1])
-    #         vet = buscarObjeto(lista_veterinarios, datos[2])
-    #         diag = buscarObjeto(lista_diagnosticos, datos[3])
-    #         trat = buscarObjeto(lista_diagnosticos, datos[4])
-    #         vac = buscarObjeto(lista_diagnosticos, datos[5])
-    #         self.listaConsultas.append(Consulta(int(codigo), masc, vet, diag, trat, vac))
+    def cargarConsultas(self):
+        with open("consultas.txt") as file:
+            lineas = file.readlines()
+        for linea in lineas:
+            datos = linea.strip().split(",")
+            codigo = datos[0]
+            masc = self.controladorMascota.buscarMascota(datos[1])
+            vet = self.controladorVeterinario.buscarVeterinario(datos[2])
+            diag = datos[3]
+            trat = self.controladorTratamiento.buscarTratamiento(datos[4])
+            vac = datos[5]
+            fecha = datos[6]
+            self.listaConsultas.append(Consulta(int(codigo), masc, vet, diag, trat, vac, fecha))
 
     def buscarObjeto(self, lista, objeto):
         for obj in lista:
@@ -74,7 +75,7 @@ class ControladorConsulta:
             elif opcion == "6":
                 self.vista.mostrarLista(self.controladorVeterinario.listaVeterinarios)
             elif opcion == "7":
-                pass #ficha Medica
+                self.vista.mostrarLista(self.listaConsultas) #ficha Medica
             elif opcion == "8":
                 pass
             elif opcion == "9":
@@ -94,5 +95,6 @@ class ControladorConsulta:
                 self.vista.mensajeError()
 
     def iniciar(self):
+        self.cargarConsultas()
         self.vista.mensajeBienvenida()
         self.menu()

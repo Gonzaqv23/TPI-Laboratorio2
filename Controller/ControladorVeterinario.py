@@ -13,5 +13,10 @@ class ControladorVeterinario:
             codigo, nombre, estado, legajo = linea.strip().split(",")
             self.listaVeterinarios.append(Veterinario(int(codigo), nombre, estado, legajo))
 
+    def buscarVeterinario(self, codigo):
+        for vet in self.listaVeterinarios:
+            if int(vet.codigo) == int(codigo):
+                return vet
+
     def iniciar(self):
         self.cargarVeterinarios()

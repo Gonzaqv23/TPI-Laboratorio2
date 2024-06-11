@@ -2,8 +2,10 @@ from View.VistaMascota import VistaMascota
 from Model.Mascota import Mascota
 
 class ControladorMascota:
-    def __init__(self):
+    def __init__(self, controladorRaza, controladorPropietario):
         self.vista = VistaMascota()
+        self.controladorRaza = controladorRaza
+        self.controladorPropietario = controladorPropietario
         self.listaMascotas = []
 
     def cargarMascotas(self):
@@ -13,11 +15,15 @@ class ControladorMascota:
             datos = linea.strip().split(",")
             codigo = datos[0]
             nombre = datos[1]
-            propietario = datos[2]
-            raza = datos[3]
-            especie = datos[4]
-            estado = datos[5]
-            self.listaMascotas.append(Mascota(int(codigo), nombre, propietario, raza, especie,int(estado)))
+            propietario = self.controladorPropietario.buscarPropietario(datos[2])
+            raza = self.controladorRaza.buscarRaza(datos[3])
+            estado = datos[4]
+            self.listaMascotas.append(Mascota(int(codigo), nombre, propietario, raza,int(estado)))
+
+    def buscarMascota(self, codigo):
+        for masc in self.listaMascotas:
+            if int(masc.codigo) == int(codigo):
+                return masc
 
     def mostrarActivas(self):
         mascotasActivas = []

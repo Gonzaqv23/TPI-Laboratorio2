@@ -1,2 +1,2 @@
-1,1,1,1,1,1
-1,1,1,2,2,1
+1,008,9,esguince,2,Moquillo canino,2023-12-03
+2,007,10,infeccion,4,Tétanos,2023-12-04

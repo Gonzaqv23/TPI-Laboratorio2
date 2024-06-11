@@ -13,5 +13,10 @@ class ControladorTratamiento:
             codigo, descripcion = linea.strip().split(",")
             self.listaTratamientos.append(Tratamiento(int(codigo), descripcion))
 
+    def buscarTratamiento(self, codigo):
+        for trat in self.listaTratamientos:
+            if int(trat.codigo) == int(codigo):
+                return trat
+
     def iniciar(self):
         self.cargarTratamientos()
