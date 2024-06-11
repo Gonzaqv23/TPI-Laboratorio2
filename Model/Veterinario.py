@@ -1,7 +1,8 @@
 class Veterinario:
-    def __init__(self, codigo, nombre, legajo):
+    def __init__(self, codigo, nombre, estado, legajo):
         self.codigo = codigo
         self.nombre = nombre
+        self.estado = estado
         self.legajo = legajo
 
     def __str__(self):

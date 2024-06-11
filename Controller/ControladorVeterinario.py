@@ -11,7 +11,7 @@ class ControladorVeterinario:
             lineas = file.readlines()
         for linea in lineas:
             codigo, nombre, estado, legajo = linea.strip().split(",")
-            self.listaVeterinarios.append(Veterinario(int(codigo), nombre, legajo))
+            self.listaVeterinarios.append(Veterinario(int(codigo), nombre, estado, legajo))
 
     def iniciar(self):
-        pass
+        self.cargarVeterinarios()

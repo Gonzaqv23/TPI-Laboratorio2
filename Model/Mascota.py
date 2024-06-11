@@ -7,6 +7,12 @@ class Mascota:
         self.especie = especie
         self.estado = estado
 
+    def isActiva(self):
+        if self.estado == 1:
+            return True
+        else:
+            return False
+
     def cambiarEstado(self):
         if self.estado == 0:
             self.estado = 1

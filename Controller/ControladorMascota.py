@@ -19,5 +19,12 @@ class ControladorMascota:
             estado = datos[5]
             self.listaMascotas.append(Mascota(int(codigo), nombre, propietario, raza, especie,int(estado)))
 
+    def mostrarActivas(self):
+        mascotasActivas = []
+        for masc in self.listaMascotas:
+            if masc.isActiva():
+                mascotasActivas.append(masc)
+        return mascotasActivas
+
     def iniciar(self):
         self.cargarMascotas()

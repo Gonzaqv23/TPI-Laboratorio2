@@ -27,23 +27,54 @@ class ControladorConsulta:
             if obj.codigo == objeto:
                 return obj
 
+    def listarDiagnosticos(self):
+        listaDiagnosticos = []
+        with open("diagnosticos.txt") as file:
+            lineas = file.readlines()
+        for linea in lineas:
+            datos = linea.strip().split(",")
+            listaDiagnosticos.append(datos[1])
+        return listaDiagnosticos
+
+    def listarVacunas(self):
+        listaVacunas = []
+        with open("vacunas.txt") as file:
+            lineas = file.readlines()
+        for linea in lineas:
+            datos = linea.strip().split(",")
+            listaVacunas.append(datos[1])
+        return listaVacunas
+
+    def listarRazas(self):
+        listaRazas = []
+        with open("razas.txt") as file:
+            lineas = file.readlines()
+        for linea in lineas:
+            datos = linea.strip().split(",")
+            listaRazas.append(datos[1])
+        return listaRazas
+
+    def gestionarConsultas(self):
+        pass
+
+
     def menu(self):
         while True:
             opcion = self.vista.mostrarMenu()
             if opcion == "1":
-                self.vista.mostrarLista(self.controladorMascota.listaMascotas)
+                self.vista.mostrarLista(self.controladorMascota.mostrarActivas())
             elif opcion == "2":
-                pass
+                self.vista.mostrarLista(self.controladorTratamiento.listaTratamientos)
             elif opcion == "3":
-                pass
+                self.vista.mostrarLista(self.listarDiagnosticos())
             elif opcion == "4":
-                pass
+                self.vista.mostrarLista(self.listarVacunas())
             elif opcion == "5":
-                pass
+                self.vista.mostrarLista(self.listarRazas())
             elif opcion == "6":
-                pass
+                self.vista.mostrarLista(self.controladorVeterinario.listaVeterinarios)
             elif opcion == "7":
-                pass
+                pass #ficha Medica
             elif opcion == "8":
                 pass
             elif opcion == "9":
@@ -54,6 +85,8 @@ class ControladorConsulta:
                 pass
             elif opcion == "12":
                 pass
+            elif opcion == "13":
+                self.gestionarConsultas()
             elif opcion == "0":
                 self.vista.mensajeDespedida()
                 break
