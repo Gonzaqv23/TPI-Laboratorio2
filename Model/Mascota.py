@@ -7,10 +7,13 @@ class Mascota:
         self.estado = estado
 
     def isActiva(self):
-        if self.estado == 1:
+        if int(self.estado) == 1:
             return True
         else:
             return False
+
+    def getInfo(self):
+        return f"Codigo: {self.codigo}, {self.nombre}"
 
     def cambiarEstado(self):
         if self.estado == 0:
@@ -19,7 +22,7 @@ class Mascota:
             self.estado = 0
 
     def __str__(self):
-        return f"{self.nombre}, {self.propietario}, {self.raza}, Estado: {self.estado}"
+        return f"{self.nombre}, {self.propietario}, {self.raza}"
 
     def __repr__(self):
-        return f"{self.nombre}, {self.propietario}, {self.raza}, Estado: {self.estado}"
+        return f"{self.nombre}, {self.propietario}, {self.raza}"

@@ -5,6 +5,9 @@ class Tratamiento:
         self.vacuna = ""
         self.descripcion = descripcion
 
+    def getInfo(self):
+        return f"Codigo: {self.codigo}, {self.descripcion}"
+
     def __str__(self):
         return f"Tratamiento: {self.descripcion}"
 

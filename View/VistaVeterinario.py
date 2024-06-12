@@ -1,2 +1,0 @@
-class VistaVeterinario:
-    pass

@@ -6,10 +6,13 @@ class Veterinario:
         self.estado = estado
 
     def isActiva(self):
-        if self.estado == 1:
+        if int(self.estado) == 1:
             return True
         else:
             return False
+
+    def getInfo(self):
+        return f"Codigo: {self.codigo}, {self.nombre}"
 
     def __str__(self):
         return f"Veterinario: {self.nombre}, Legajo: {self.legajo}"

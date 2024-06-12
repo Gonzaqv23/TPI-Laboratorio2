@@ -1,2 +1,0 @@
-class VistaMascota:
-    pass

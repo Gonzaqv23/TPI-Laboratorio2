@@ -10,6 +10,15 @@ class Raza:
     def darBaja(self):
         self.estado = 0
 
+    def isActiva(self):
+        if int(self.estado) == 1:
+            return True
+        else:
+            return False
+
+    def getInfo(self):
+        return f"Codigo: {self.codigo}, {self.nombre}"
+
     def __str__(self):
         return f"Raza: {self.nombre}"
 

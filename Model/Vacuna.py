@@ -1,4 +1,4 @@
-class Propietario:
+class Vacuna:
     def __init__(self, codigo, nombre, estado):
         self.codigo = codigo
         self.nombre = nombre
@@ -20,7 +20,7 @@ class Propietario:
             return False
 
     def __str__(self):
-        return f"Propietario: {self.nombre}"
+        return f"Vacuna: {self.nombre}"
 
     def __repr__(self):
-        return f"Propietario: {self.nombre}"
+        return f"Vacuna: {self.nombre}"
