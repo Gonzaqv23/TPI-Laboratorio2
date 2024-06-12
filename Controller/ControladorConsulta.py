@@ -70,6 +70,12 @@ class ControladorConsulta:
         else:
             self.vista.mensajeNoFichaMedica()
 
+    def consultasXmascotas(self):
+        pass
+
+    def rankingDiagnosticos(self):
+        pass
+
     def menuListas(self):
         while True:
             opcion = self.vista.menuListas()
@@ -117,6 +123,8 @@ class ControladorConsulta:
                 self.mostrarFichaMedica()#Crear y/o rellenar archivo
             elif opcion == "4":
                 self.menuDatos()
+            elif opcion == "5":
+                self.controladorMascota.registrarMascotas()
             elif opcion == "0":
                 self.vista.mensajeDespedida()
                 break

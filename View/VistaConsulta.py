@@ -37,6 +37,7 @@ class VistaConsulta:
                   "2 - REALIZAR CONSULTA\n"
                   "3 - Mostrar Ficha Medica\n"
                   "4 - Mostrar Informacion\n"
+                  "5 - Registrar Mascota\n"
                   "0 - Salir\n\n")
             opcion = input("Elija opcion deseada: ")
             return opcion

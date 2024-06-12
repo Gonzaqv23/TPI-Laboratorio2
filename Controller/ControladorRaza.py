@@ -16,5 +16,11 @@ class ControladorRaza:
             if int(raza.codigo) == int(codigo):
                 return raza
 
+    def listarInfoRazas(self):
+        lista = ["Raza"]
+        for raza in self.listaRazas:
+            lista.append(raza.getInfo())
+        return lista
+
     def iniciar(self):
         self.cargarRazas()
