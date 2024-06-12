@@ -37,6 +37,12 @@ class ControladorMascota:
                 mascotasActivas.append(masc.getInfo())
         return mascotasActivas
 
+    def mostrarInfoTodas(self):
+        mascotas = ["Mascotas"]
+        for masc in self.listaMascotas:
+            mascotas.append(masc.getInfo())
+        return mascotas
+
 
     def listarRazas(self):
         lista = []

@@ -23,7 +23,9 @@ class ControladorConsulta:
             trat = self.controladorTratamiento.buscarTratamiento(datos[4])
             vac = self.controladorTratamiento.buscarVacuna(datos[5])
             fecha = datos[6]
-            self.listaConsultas.append(Consulta(int(codigo), masc, vet, diag, trat, vac, fecha))
+            consulta = Consulta(int(codigo), masc, vet, diag, trat, vac, fecha)
+            self.listaConsultas.append(consulta)
+            masc.cargarFichaMedica(consulta)
 
     def buscarObjeto(self, lista, objeto):
         for obj in lista:
@@ -50,7 +52,23 @@ class ControladorConsulta:
         fecha = date.today()
         consulta = Consulta(codigo,objMascota,objVeterinario,objDiagnostico,objTratamiento,objVacuna,fecha)
         self.listaConsultas.append(consulta)
+        objMascota.cargarFichaMedica(consulta)
         self.vista.mostrarDato(consulta)
+        self.archivarConsulta(codigo,mascota,veterinario,disgnostico,tratamiento,vacuna,fecha)
+
+    def archivarConsulta(self, codigo,mascota,veterinario,disgnostico,tratamiento,vacuna,fecha):
+        with open("consultas.txt", "a") as file:
+            nueva_consulta = f"\n{codigo},{mascota},{veterinario},{disgnostico},{tratamiento},{vacuna},{fecha}"
+            file.write(nueva_consulta)
+
+    def mostrarFichaMedica(self):
+        self.vista.mostrarLista(self.controladorMascota.mostrarInfoTodas())
+        mascota = self.vista.getDato()
+        objMascota = self.controladorMascota.buscarMascota(mascota)
+        if (objMascota.mostrarFichaMedica()):
+            self.vista.mostrarLista(objMascota.mostrarFichaMedica())
+        else:
+            self.vista.mensajeNoFichaMedica()
 
     def menuListas(self):
         while True:
@@ -72,6 +90,22 @@ class ControladorConsulta:
             else:
                 self.vista.mensajeError()
 
+    def menuDatos(self):
+        while True:
+            opcion = self.vista.mostrarMenuDatos()
+            if opcion == "1":
+                self.controladorMascota.mascotasXcliente() #FALTA
+            elif opcion == "2":
+                self.consultasXmascotas()#falta
+            elif opcion == "3":
+                self.controladorMascota.tratamientosXmascotas()#falta
+            elif opcion == "4":
+                self.rankingDiagnosticos()#falta
+            elif opcion == "0":
+                break
+            else:
+                self.vista.mensajeError()
+
     def menu(self):
         while True:
             opcion = self.vista.mostrarMenu()
@@ -80,17 +114,9 @@ class ControladorConsulta:
             elif opcion == "2":
                 self.hacerConsulta()
             elif opcion == "3":
-                pass
+                self.mostrarFichaMedica()#Crear y/o rellenar archivo
             elif opcion == "4":
-                pass
-            elif opcion == "5":
-                pass
-            elif opcion == "6":
-                pass
-            elif opcion == "7":
-                pass
-            elif opcion == "8":
-                pass
+                self.menuDatos()
             elif opcion == "0":
                 self.vista.mensajeDespedida()
                 break

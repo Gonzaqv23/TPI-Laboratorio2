@@ -5,12 +5,19 @@ class Mascota:
         self.propietario = prop
         self.raza = raza
         self.estado = estado
+        self.fichaMedica = []
 
     def isActiva(self):
         if int(self.estado) == 1:
             return True
         else:
             return False
+
+    def cargarFichaMedica(self, consulta):
+        self.fichaMedica.append(consulta)
+
+    def mostrarFichaMedica(self):
+        return self.fichaMedica
 
     def getInfo(self):
         return f"Codigo: {self.codigo}, {self.nombre}"

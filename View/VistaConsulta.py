@@ -17,21 +17,26 @@ class VistaConsulta:
                   "4 - Listado Vacunas\n"
                   "5 - Listado Razas\n"
                   "6 - Listado Veterinarios\n"
-                  "0 - Atras\n")
+                  "0 - Atras\n\n")
             opcion = input("Elija el Listado que quiere ver: ")
             return opcion
 
+      def mostrarMenuDatos(self):
+            print("\n"
+                  "1 - Consultar cantidad de Mascotas de un Cliente\n"
+                  "2 - Consultar cantidad de Consultas por Mascotas\n"
+                  "3 - Consultar cantidad de Tratamientos por Mascotas\n"
+                  "4 - Ranking de Diagnosticos\n"
+                  "0 - Atras\n\n")
+            opcion = input("Elija opcion deseada: ")
+            return opcion
 
       def mostrarMenu(self):
             print("\n"
                   "1 - Mostrar Listado\n"
                   "2 - REALIZAR CONSULTA\n"
-                  "3 - Consultar cantidad de Mascotas de un Cliente\n"
-                  "4 - Consultar cantidad de Consultas por Mascotas\n"
-                  "5 - Consultar cantidad de Tratamientos por Mascotas\n"
-                  "6 - Ranking de Diagnosticos\n"
-                  "7 - Cantidad de Razas por Diagnostico\n"
-                  "8 - Mostrar Ficha Medica\n"
+                  "3 - Mostrar Ficha Medica\n"
+                  "4 - Mostrar Informacion\n"
                   "0 - Salir\n\n")
             opcion = input("Elija opcion deseada: ")
             return opcion
@@ -46,3 +51,6 @@ class VistaConsulta:
 
       def mostrarDato(self, dato):
             print(dato)
+
+      def mensajeNoFichaMedica(self):
+            print("\nNo Tiene Ficha Medica Aun\n")
