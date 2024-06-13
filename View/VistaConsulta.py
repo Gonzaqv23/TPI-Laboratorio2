@@ -58,3 +58,6 @@ class VistaConsulta:
 
       def mostrarTratamientosXmascota(self, cantidad):
             print(f"\nLa Mascota seleccionada tiene {cantidad} tratamientos\n")
+
+      def mostrarRanking(self, codigo, frecuencia):
+            print(f"Código de diagnóstico: {codigo}, Frecuencia: {frecuencia}")

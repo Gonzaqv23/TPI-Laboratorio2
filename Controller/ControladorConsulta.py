@@ -71,15 +71,13 @@ class ControladorConsulta:
             self.vista.mensajeNoFichaMedica()
 
     def rankingDiagnosticos(self):
-        pass
-        # j = 0
-        # diagnosticos = set()
-        # for consulta in self.listaConsultas:
-        #     diagnosticos.add(consulta.diagnostico.getCodigo())
-        # for consulta in self.listaConsultas:
-        #     j += 1
-        #     for i in range(len(diagnosticos)):
-        #         if consulta.diagnostico.getCodigo() == i:
+        conteo_diagnosticos = {}
+        for consulta in self.listaConsultas:
+            codigo_diagnostico = consulta.diagnostico.getCodigo()
+            conteo_diagnosticos[codigo_diagnostico] = conteo_diagnosticos.get(codigo_diagnostico, 0) + 1
+        diagnosticos_ordenados = sorted(conteo_diagnosticos.items(), key=lambda x: x[1], reverse=True)
+        for codigo, frecuencia in diagnosticos_ordenados:
+            self.vista.mostrarRanking(codigo,frecuencia)
 
     def tratamientosXmascota(self):
         cant = 0
