@@ -23,9 +23,9 @@ class VistaConsulta:
 
       def mostrarMenuDatos(self):
             print("\n"
-                  "1 - Consultar cantidad de Mascotas de un Cliente\n"
-                  "2 - Consultar cantidad de Consultas por Mascotas\n"
-                  "3 - Consultar cantidad de Tratamientos por Mascotas\n"
+                  "1 - Consultar cantidad de Mascotas de un Propietario\n"
+                  "2 - Consultar cantidad de Consultas por Mascota\n"
+                  "3 - Consultar cantidad de Tratamientos por Mascota\n"
                   "4 - Ranking de Diagnosticos\n"
                   "0 - Atras\n\n")
             opcion = input("Elija opcion deseada: ")
@@ -55,3 +55,6 @@ class VistaConsulta:
 
       def mensajeNoFichaMedica(self):
             print("\nNo Tiene Ficha Medica Aun\n")
+
+      def mostrarTratamientosXmascota(self, cantidad):
+            print(f"\nLa Mascota seleccionada tiene {cantidad} tratamientos\n")

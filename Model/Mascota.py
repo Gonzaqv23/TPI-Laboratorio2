@@ -22,6 +22,17 @@ class Mascota:
     def getInfo(self):
         return f"Codigo: {self.codigo}, {self.nombre}"
 
+    def getPropietario(self):
+        return self.propietario
+
+    def getCantidadConsultas(self):
+        if len(self.fichaMedica) > 1:
+            return f"{self.nombre}: {len(self.fichaMedica)} consultas"
+        elif len(self.fichaMedica) == 1:
+            return f"{self.nombre}: {len(self.fichaMedica)} consulta"
+        else:
+            return f"{self.nombre} aun no tiene consultas"
+
     def cambiarEstado(self):
         if self.estado == 0:
             self.estado = 1

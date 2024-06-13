@@ -74,8 +74,20 @@ class ControladorMascota:
             nueva_mascota = f"\n{codigo},{nombre},{propietario},{raza},{estado}"
             file.write(nueva_mascota)
 
-    def mascotasXcliente(self):
-        pass
+    def mascotasXpropietario(self):
+        cant = 0
+        self.vista.mostrarLista(self.mostrarInfoPropietarios())
+        propietario = self.vista.getDato()
+        objPropietario = self.controladorPropietario.buscarPropietario(propietario)
+        for masc in self.listaMascotas:
+            if masc.getPropietario() == objPropietario:
+                cant += 1
+        self.vista.mostrarMascotasXpropietario(cant)
+
+
+    def consultasXmascotas(self):
+        for masc in self.listaMascotas:
+            self.vista.mostrarDato(masc.getCantidadConsultas())
 
     def tratamientosXmascotas(self):
         pass

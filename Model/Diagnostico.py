@@ -10,6 +10,9 @@ class Diagnostico:
     def darBaja(self):
         self.estado = 0
 
+    def getCodigo(self):
+        return self.codigo
+
     def getInfo(self):
         return f"Codigo: {self.codigo}, {self.nombre}"
 

@@ -70,11 +70,26 @@ class ControladorConsulta:
         else:
             self.vista.mensajeNoFichaMedica()
 
-    def consultasXmascotas(self):
-        pass
-
     def rankingDiagnosticos(self):
         pass
+        # j = 0
+        # diagnosticos = set()
+        # for consulta in self.listaConsultas:
+        #     diagnosticos.add(consulta.diagnostico.getCodigo())
+        # for consulta in self.listaConsultas:
+        #     j += 1
+        #     for i in range(len(diagnosticos)):
+        #         if consulta.diagnostico.getCodigo() == i:
+
+    def tratamientosXmascota(self):
+        cant = 0
+        self.vista.mostrarLista(self.controladorMascota.mostrarInfoTodas())
+        mascota = self.vista.getDato()
+        objMascota = self.controladorMascota.buscarMascota(mascota)
+        for consulta in self.listaConsultas:
+            if consulta.getMascota() == objMascota:
+                cant += 1
+        self.vista.mostrarTratamientosXmascota(cant)
 
     def menuListas(self):
         while True:
@@ -100,13 +115,13 @@ class ControladorConsulta:
         while True:
             opcion = self.vista.mostrarMenuDatos()
             if opcion == "1":
-                self.controladorMascota.mascotasXcliente() #FALTA
+                self.controladorMascota.mascotasXpropietario()
             elif opcion == "2":
-                self.consultasXmascotas()#falta
+                self.controladorMascota.consultasXmascotas()
             elif opcion == "3":
-                self.controladorMascota.tratamientosXmascotas()#falta
+                self.tratamientosXmascota()
             elif opcion == "4":
-                self.rankingDiagnosticos()#falta
+                self.rankingDiagnosticos()
             elif opcion == "0":
                 break
             else:
@@ -120,7 +135,7 @@ class ControladorConsulta:
             elif opcion == "2":
                 self.hacerConsulta()
             elif opcion == "3":
-                self.mostrarFichaMedica()#Crear y/o rellenar archivo
+                self.mostrarFichaMedica()
             elif opcion == "4":
                 self.menuDatos()
             elif opcion == "5":

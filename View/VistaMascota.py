@@ -14,3 +14,6 @@ class VistaMascota:
     def mostrarLista(self, lista):
         for i in lista:
             print(i)
+
+    def mostrarMascotasXpropietario(self, cantidad):
+        print(f"\nEl Propietario seleccionado posee {cantidad} mascotas\n")

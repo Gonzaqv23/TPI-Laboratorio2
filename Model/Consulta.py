@@ -8,14 +8,8 @@ class Consulta:
         self.vacuna = vac
         self.fecha = fecha
 
-    def dar_alta_consulta(self):
-        pass
-
-    def modificar_consulta(self):
-        pass
-
-    def dar_baja_consulta(self):
-        pass
+    def getMascota(self):
+        return self.mascota
 
     def __str__(self):
         return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}\n"
