@@ -89,11 +89,25 @@ class ControladorConsulta:
                 cant += 1
         self.vista.mostrarTratamientosXmascota(cant)
 
+    def cambiarEstadoDiagnostico(self):
+        self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoDiagnosticos())
+        disgnostico = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objDiagnostico = self.controladorTratamiento.buscarDiagnostico(disgnostico)
+        if altaObaja == "a":
+            objDiagnostico.darAlta()
+            self.vista.mostrarDato(objDiagnostico.estado)
+        elif altaObaja == "b":
+            objDiagnostico.darBaja()
+            self.vista.mostrarDato(objDiagnostico.estado)
+        else:
+            self.vista.mensajeError()
+
     def darAltasYbajas(self):
         while True:
             opcion = self.vista.menuAltasyBajas()
             if opcion == "1":
-                pass
+                self.cambiarEstadoDiagnostico()
             elif opcion == "2":
                 pass
             elif opcion == "3":

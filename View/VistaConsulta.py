@@ -9,6 +9,10 @@ class VistaConsulta:
       def mensajeError(self):
             print("Opcion incorrecta. Intente de nuevo")
 
+      def altaObaja(self):
+            opc = input("Realizar Alta o baja (a/b): ")
+            return opc
+
       def menuAltasyBajas(self):
             print("\n"
                   "1 - Diagnostico\n"
