@@ -5,6 +5,12 @@ class Veterinario:
         self.legajo = legajo
         self.estado = estado
 
+    def darAlta(self):
+        self.estado = 1
+
+    def darBaja(self):
+        self.estado = 0
+
     def isActiva(self):
         if int(self.estado) == 1:
             return True

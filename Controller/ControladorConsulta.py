@@ -77,7 +77,7 @@ class ControladorConsulta:
             conteo_diagnosticos[codigo_diagnostico] = conteo_diagnosticos.get(codigo_diagnostico, 0) + 1
         diagnosticos_ordenados = sorted(conteo_diagnosticos.items(), key=lambda x: x[1], reverse=True)
         for codigo, frecuencia in diagnosticos_ordenados:
-            self.vista.mostrarRanking(codigo,frecuencia)
+            self.vista.mostrarRanking(self.controladorTratamiento.buscarDiagnostico(codigo),frecuencia)
 
     def tratamientosXmascota(self):
         cant = 0
@@ -88,6 +88,29 @@ class ControladorConsulta:
             if consulta.getMascota() == objMascota:
                 cant += 1
         self.vista.mostrarTratamientosXmascota(cant)
+
+    def darAltasYbajas(self):
+        while True:
+            opcion = self.vista.menuAltasyBajas()
+            if opcion == "1":
+                pass
+            elif opcion == "2":
+                pass
+            elif opcion == "3":
+                pass
+            elif opcion == "4":
+                pass
+            elif opcion == "5":
+                pass
+            elif opcion == "6":
+                pass
+            elif opcion == "7":
+                pass
+            elif opcion == "0":
+                break
+            else:
+                self.vista.mensajeError()
+
 
     def menuListas(self):
         while True:
@@ -138,6 +161,10 @@ class ControladorConsulta:
                 self.menuDatos()
             elif opcion == "5":
                 self.controladorMascota.registrarMascotas()
+            elif opcion == "6":
+                self.controladorMascota.agregarPropietario()
+            elif opcion == "7":
+                self.darAltasYbajas()
             elif opcion == "0":
                 self.vista.mensajeDespedida()
                 break

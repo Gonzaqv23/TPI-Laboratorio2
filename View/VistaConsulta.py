@@ -9,6 +9,19 @@ class VistaConsulta:
       def mensajeError(self):
             print("Opcion incorrecta. Intente de nuevo")
 
+      def menuAltasyBajas(self):
+            print("\n"
+                  "1 - Diagnostico\n"
+                  "2 - Mascota\n"
+                  "3 - Propietario\n"
+                  "4 - Raza\n"
+                  "5 - Tratamiento\n"
+                  "6 - Vacuna\n"
+                  "7 - Veterinario\n"
+                  "0 - Atras\n\n")
+            opcion = input("Elija Opcion: ")
+            return opcion
+
       def menuListas(self):
             print("\n"
                   "1 - Listado Mascotas Activas\n"
@@ -38,6 +51,8 @@ class VistaConsulta:
                   "3 - Mostrar Ficha Medica\n"
                   "4 - Mostrar Informacion\n"
                   "5 - Registrar Mascota\n"
+                  "6 - Registrar Propietario\n"
+                  "7 - Altas/Bajas\n"
                   "0 - Salir\n\n")
             opcion = input("Elija opcion deseada: ")
             return opcion
@@ -59,5 +74,5 @@ class VistaConsulta:
       def mostrarTratamientosXmascota(self, cantidad):
             print(f"\nLa Mascota seleccionada tiene {cantidad} tratamientos\n")
 
-      def mostrarRanking(self, codigo, frecuencia):
-            print(f"Código de diagnóstico: {codigo}, Frecuencia: {frecuencia}")
+      def mostrarRanking(self, diagnostico, frecuencia):
+            print(f"{diagnostico}, Frecuencia: {frecuencia}")

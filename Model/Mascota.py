@@ -33,11 +33,11 @@ class Mascota:
         else:
             return f"{self.nombre} aun no tiene consultas"
 
-    def cambiarEstado(self):
-        if self.estado == 0:
-            self.estado = 1
-        else:
-            self.estado = 0
+    def darAlta(self):
+        self.estado = 1
+
+    def darBaja(self):
+        self.estado = 0
 
     def __str__(self):
         return f"{self.nombre}, {self.propietario}, {self.raza}"

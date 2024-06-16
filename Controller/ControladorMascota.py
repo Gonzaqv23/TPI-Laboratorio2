@@ -74,6 +74,9 @@ class ControladorMascota:
             nueva_mascota = f"\n{codigo},{nombre},{propietario},{raza},{estado}"
             file.write(nueva_mascota)
 
+    def agregarPropietario(self):
+        self.controladorPropietario.registrarPropietario()
+
     def mascotasXpropietario(self):
         cant = 0
         self.vista.mostrarLista(self.mostrarInfoPropietarios())

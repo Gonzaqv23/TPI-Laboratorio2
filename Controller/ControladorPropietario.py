@@ -1,8 +1,11 @@
 from Model.Propietario import Propietario
+from View.VistaPropietario import VistaPropietario
+import random
 
 
 class ControladorPropietario:
     def __init__(self):
+        self.vista = VistaPropietario()
         self.listaPropietarios = []
 
     def cargarPropietarios(self):
@@ -16,6 +19,20 @@ class ControladorPropietario:
         for prop in self.listaPropietarios:
             if int(prop.codigo) == int(codigo):
                 return prop
+
+    def registrarPropietario(self):
+        codigo = random.randint(30, 499)
+        nombre = self.vista.getNombre()
+        estado = "1"
+        propietario = Propietario(codigo, nombre, estado)
+        self.listaPropietarios.append(propietario)
+        self.vista.mostrarDato(propietario)
+        self.archivarPropietario(codigo, nombre, estado)
+
+    def archivarPropietario(self, codigo, nombre, estado):
+        with open("propietarios.txt", "a") as file:
+            nuevo_propietario = f"\n{codigo},{nombre},{estado}"
+            file.write(nuevo_propietario)
 
     def iniciar(self):
         self.cargarPropietarios()
