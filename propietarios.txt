@@ -11,3 +11,5 @@
 11,Martin Herrera,0
 12,Sofia Castro,1
 176,Horacio Farias,1
+123,Luciana QV,1
+402,Nolberto Alcina,1

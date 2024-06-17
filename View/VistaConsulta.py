@@ -17,11 +17,7 @@ class VistaConsulta:
             print("\n"
                   "1 - Diagnostico\n"
                   "2 - Mascota\n"
-                  "3 - Propietario\n"
-                  "4 - Raza\n"
-                  "5 - Tratamiento\n"
-                  "6 - Vacuna\n"
-                  "7 - Veterinario\n"
+                  "3 - Veterinario\n"
                   "0 - Atras\n\n")
             opcion = input("Elija Opcion: ")
             return opcion
