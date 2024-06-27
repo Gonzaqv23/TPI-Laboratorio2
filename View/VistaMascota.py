@@ -11,6 +11,13 @@ class VistaMascota:
         dato = input("\nIngrese Codigo: ")
         return dato
 
+    def mensajeError(self):
+        print("Opcion incorrecta. Intente de nuevo")
+
+    def altaObaja(self):
+        opc = input("Realizar Alta o baja (a/b): ")
+        return opc
+
     def mostrarLista(self, lista):
         for i in lista:
             print(i)

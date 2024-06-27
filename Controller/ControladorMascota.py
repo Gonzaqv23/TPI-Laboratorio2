@@ -74,6 +74,48 @@ class ControladorMascota:
             nueva_mascota = f"\n{codigo},{nombre},{propietario},{raza},{estado}"
             file.write(nueva_mascota)
 
+    def cambiarEstadoMascota(self):
+        self.vista.mostrarLista(self.mostrarInfo())
+        mascota = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objMascota = self.buscarMascota(mascota)
+        if altaObaja == "a":
+            objMascota.darAlta()
+            self.vista.mostrarDato(objMascota.getEstado())
+        elif altaObaja == "b":
+            objMascota.darBaja()
+            self.vista.mostrarDato(objMascota.getEstado())
+        else:
+            self.vista.mensajeError()
+
+    def cambiarEstadoRaza(self):
+        self.vista.mostrarLista(self.controladorRaza.listarInfoRazas())
+        raza = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objRaza = self.controladorRaza.buscarRaza(raza)
+        if altaObaja == "a":
+            objRaza.darAlta()
+            self.vista.mostrarDato(objRaza.getEstado())
+        elif altaObaja == "b":
+            objRaza.darBaja()
+            self.vista.mostrarDato(objRaza.getEstado())
+        else:
+            self.vista.mensajeError()
+
+    def cambiarEstadoPropietario(self):
+        self.vista.mostrarLista(self.controladorPropietario.listarPropietarios())
+        propietario = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objPropietario = self.controladorPropietario.buscarPropietario(propietario)
+        if altaObaja == "a":
+            objPropietario.darAlta()
+            self.vista.mostrarDato(objPropietario.getEstado())
+        elif altaObaja == "b":
+            objPropietario.darBaja()
+            self.vista.mostrarDato(objPropietario.getEstado())
+        else:
+            self.vista.mensajeError()
+
     def agregarPropietario(self):
         self.controladorPropietario.registrarPropietario()
 

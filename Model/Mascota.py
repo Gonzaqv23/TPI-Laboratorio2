@@ -39,6 +39,12 @@ class Mascota:
     def darBaja(self):
         self.estado = 0
 
+    def getEstado(self):
+        if int(self.estado) == 1:
+            return f"{self.codigo} - {self.nombre} - Estado: Habilitado"
+        elif int(self.estado) == 0:
+            return f"{self.codigo} - {self.nombre} - Estado: NO habilitado"
+
     def __str__(self):
         return f"{self.nombre}, {self.propietario}, {self.raza}"
 

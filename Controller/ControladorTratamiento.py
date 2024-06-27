@@ -1,9 +1,11 @@
 from Model.Tratamiento import Tratamiento
 from Model.Vacuna import Vacuna
 from Model.Diagnostico import Diagnostico
+from View.VistaTratamiento import VistaTratamiento
 
 class ControladorTratamiento:
     def __init__(self):
+        self.vista = VistaTratamiento()
         self.listaTratamientos = []
         self.listaVacunas = []
         self.listaDiagnosticos = []
@@ -12,8 +14,8 @@ class ControladorTratamiento:
         with open("tratamientos.txt") as file:
             lineas = file.readlines()
         for linea in lineas:
-            codigo, descripcion = linea.strip().split(",")
-            self.listaTratamientos.append(Tratamiento(int(codigo), descripcion))
+            codigo, descripcion, estado = linea.strip().split(",")
+            self.listaTratamientos.append(Tratamiento(int(codigo), descripcion, estado))
 
     def cargarVacunas(self):
         with open("vacunas.txt") as file:
@@ -63,6 +65,20 @@ class ControladorTratamiento:
             if vacuna.isActiva():
                 vacunasActivas.append(vacuna.getInfo())
         return vacunasActivas
+
+    def cambiarEstadoTratamiento(self):
+        self.vista.mostrarLista(self.mostrarInfoTratamientos())
+        tratamiento = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objTratamiento = self.buscarTratamiento(tratamiento)
+        if altaObaja == "a":
+            objTratamiento.darAlta()
+            self.vista.mostrarDato(objTratamiento.getEstado())
+        elif altaObaja == "b":
+            objTratamiento.darBaja()
+            self.vista.mostrarDato(objTratamiento.getEstado())
+        else:
+            self.vista.mensajeError()
 
     def iniciar(self):
         self.cargarTratamientos()

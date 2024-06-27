@@ -18,6 +18,10 @@ class VistaConsulta:
                   "1 - Diagnostico\n"
                   "2 - Mascota\n"
                   "3 - Veterinario\n"
+                  "4 - Raza\n"
+                  "5 - Propietario\n"
+                  "6 - Tratamiento\n"
+                  "7 - Vacuna\n"
                   "0 - Atras\n\n")
             opcion = input("Elija Opcion: ")
             return opcion

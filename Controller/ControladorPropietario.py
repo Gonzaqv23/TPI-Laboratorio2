@@ -34,5 +34,11 @@ class ControladorPropietario:
             nuevo_propietario = f"\n{codigo},{nombre},{estado}"
             file.write(nuevo_propietario)
 
+    def listarPropietarios(self):
+        lista = []
+        for prop in self.listaPropietarios:
+            lista.append(prop.getEstado())
+        return lista
+
     def iniciar(self):
         self.cargarPropietarios()

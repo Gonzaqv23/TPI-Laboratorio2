@@ -17,3 +17,6 @@
 238,Malvina,10,2,1
 173,Perlita,123,8,1
 109,Lisa de Ro,123,7,1
+422,Jacinto,416,2,1
+186,Brunela,170,3,1
+96,Lulu,174,9,1

@@ -13,3 +13,6 @@
 176,Horacio Farias,1
 123,Luciana QV,1
 402,Nolberto Alcina,1
+416,Oscar Martinez,1
+170,Pedro Gomez,1
+174,Oscar Gomez,1

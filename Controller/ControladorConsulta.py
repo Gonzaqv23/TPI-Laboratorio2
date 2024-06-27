@@ -96,40 +96,13 @@ class ControladorConsulta:
         objDiagnostico = self.controladorTratamiento.buscarDiagnostico(disgnostico)
         if altaObaja == "a":
             objDiagnostico.darAlta()
-            self.vista.mostrarDato(objDiagnostico.estado)
+            self.vista.mostrarDato(objDiagnostico.getEstado())
         elif altaObaja == "b":
             objDiagnostico.darBaja()
-            self.vista.mostrarDato(objDiagnostico.estado)
+            self.vista.mostrarDato(objDiagnostico.getEstado())
         else:
             self.vista.mensajeError()
 
-    def cambiarEstadoMascota(self):
-        self.vista.mostrarLista(self.controladorMascota.mostrarInfo())
-        mascota = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objMascota = self.controladorMascota.buscarMascota(mascota)
-        if altaObaja == "a":
-            objMascota.darAlta()
-            self.vista.mostrarDato(objMascota.estado)
-        elif altaObaja == "b":
-            objMascota.darBaja()
-            self.vista.mostrarDato(objMascota.estado)
-        else:
-            self.vista.mensajeError()
-
-    def cambiarEstadoVeterinario(self):
-        self.vista.mostrarLista(self.controladorVeterinario.mostrarInfo())
-        veterinario = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objVeterinario = self.controladorVeterinario.buscarVeterinario(veterinario)
-        if altaObaja == "a":
-            objVeterinario.darAlta()
-            self.vista.mostrarDato(objVeterinario.estado)
-        elif altaObaja == "b":
-            objVeterinario.darBaja()
-            self.vista.mostrarDato(objVeterinario.estado)
-        else:
-            self.vista.mensajeError()
 
     def darAltasYbajas(self):
         while True:
@@ -137,9 +110,17 @@ class ControladorConsulta:
             if opcion == "1":
                 self.cambiarEstadoDiagnostico()
             elif opcion == "2":
-                self.cambiarEstadoMascota()
+                self.controladorMascota.cambiarEstadoMascota()
             elif opcion == "3":
-                self.cambiarEstadoVeterinario()
+                self.controladorVeterinario.cambiarEstadoVeterinario()
+            elif opcion == "4":
+                self.controladorMascota.cambiarEstadoRaza()
+            elif opcion == "5":
+                self.controladorMascota.cambiarEstadoPropietario()
+            elif opcion == "6":
+                self.controladorTratamiento.cambiarEstadoTratamiento()
+            elif opcion == "7":
+                pass
             elif opcion == "0":
                 break
             else:
