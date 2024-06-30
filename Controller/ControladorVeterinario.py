@@ -25,6 +25,12 @@ class ControladorVeterinario:
                 veterinariosActivos.append(vet.getInfo())
         return veterinariosActivos
 
+    def mostrarInfoVeterinarios(self):
+        veterinarios = ["Veterinarios"]
+        for vet in self.listaVeterinarios:
+            veterinarios.append(vet.getEstado())
+        return veterinarios
+
     def cambiarEstadoVeterinario(self):
         self.vista.mostrarLista(self.mostrarInfo())
         veterinario = self.vista.getDato()

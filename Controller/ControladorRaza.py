@@ -22,5 +22,12 @@ class ControladorRaza:
             lista.append(raza.getInfo())
         return lista
 
+    def listarRazas(self):
+        lista = ["Razas"]
+        for raza in self.listaRazas:
+            lista.append(raza.getEstado())
+        return lista
+
+
     def iniciar(self):
         self.cargarRazas()

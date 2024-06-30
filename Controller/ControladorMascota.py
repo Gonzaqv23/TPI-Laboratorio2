@@ -26,14 +26,6 @@ class ControladorMascota:
             if int(masc.codigo) == int(codigo):
                 return masc
 
-
-    def mostrarActivas(self):
-        mascotasActivas = []
-        for masc in self.listaMascotas:
-            if masc.isActiva():
-                mascotasActivas.append(masc)
-        return mascotasActivas
-
     def mostrarInfo(self):
         mascotasActivas = ["Mascotas"]
         for masc in self.listaMascotas:
@@ -41,10 +33,10 @@ class ControladorMascota:
                 mascotasActivas.append(masc.getInfo())
         return mascotasActivas
 
-    def mostrarInfoTodas(self):
+    def mostrarInfoMascotas(self):
         mascotas = ["Mascotas"]
         for masc in self.listaMascotas:
-            mascotas.append(masc.getInfo())
+            mascotas.append(masc.getEstado())
         return mascotas
 
     def mostrarInfoPropietarios(self):
@@ -136,12 +128,6 @@ class ControladorMascota:
 
     def tratamientosXmascotas(self):
         pass
-
-    def listarRazas(self):
-        lista = []
-        for raza in self.controladorRaza.listaRazas:
-            lista.append(raza)
-        return lista
 
     def iniciar(self):
         self.cargarMascotas()

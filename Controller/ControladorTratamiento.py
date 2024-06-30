@@ -47,24 +47,22 @@ class ControladorTratamiento:
                 return diag
 
     def mostrarInfoDiagnosticos(self):
-        diagnosticosActivos = ["Diagnosticos"]
+        diagnosticos = ["Diagnosticos"]
         for diag in self.listaDiagnosticos:
-            if diag.isActiva():
-                diagnosticosActivos.append(diag.getInfo())
-        return diagnosticosActivos
+            diagnosticos.append(diag.getEstado())
+        return diagnosticos
 
     def mostrarInfoTratamientos(self):
-        tratamientosActivos = ["Tratamientos"]
+        tratamientos = ["Tratamientos"]
         for trat in self.listaTratamientos:
-            tratamientosActivos.append(trat.getInfo())
-        return tratamientosActivos
+            tratamientos.append(trat.getEstado())
+        return tratamientos
 
     def mostrarInfoVacunas(self):
-        vacunasActivas = ["Vacunas"]
+        vacunas = ["Vacunas"]
         for vacuna in self.listaVacunas:
-            if vacuna.isActiva():
-                vacunasActivas.append(vacuna.getInfo())
-        return vacunasActivas
+            vacunas.append(vacuna.getEstado())
+        return vacunas
 
     def cambiarEstadoTratamiento(self):
         self.vista.mostrarLista(self.mostrarInfoTratamientos())
@@ -77,6 +75,20 @@ class ControladorTratamiento:
         elif altaObaja == "b":
             objTratamiento.darBaja()
             self.vista.mostrarDato(objTratamiento.getEstado())
+        else:
+            self.vista.mensajeError()
+
+    def cambiarEstadoVacuna(self):
+        self.vista.mostrarLista(self.mostrarInfoVacunas())
+        vacuna = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objVacuna = self.buscarVacuna(vacuna)
+        if altaObaja == "a":
+            objVacuna.darAlta()
+            self.vista.mostrarDato(objVacuna.getEstado())
+        elif altaObaja == "b":
+            objVacuna.darBaja()
+            self.vista.mostrarDato(objVacuna.getEstado())
         else:
             self.vista.mensajeError()
 

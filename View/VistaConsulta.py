@@ -28,7 +28,7 @@ class VistaConsulta:
 
       def menuListas(self):
             print("\n"
-                  "1 - Listado Mascotas Activas\n"
+                  "1 - Listado Mascotas\n"
                   "2 - Listado Tratamientos\n"
                   "3 - Listado Diagnosticos\n"
                   "4 - Listado Vacunas\n"

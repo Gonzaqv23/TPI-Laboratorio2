@@ -120,7 +120,7 @@ class ControladorConsulta:
             elif opcion == "6":
                 self.controladorTratamiento.cambiarEstadoTratamiento()
             elif opcion == "7":
-                pass
+                self.controladorTratamiento.cambiarEstadoVacuna()
             elif opcion == "0":
                 break
             else:
@@ -131,17 +131,17 @@ class ControladorConsulta:
         while True:
             opcion = self.vista.menuListas()
             if opcion == "1":
-                self.vista.mostrarLista(self.controladorMascota.mostrarActivas())
+                self.vista.mostrarLista(self.controladorMascota.mostrarInfoMascotas())
             elif opcion == "2":
-                self.vista.mostrarLista(self.controladorTratamiento.listaTratamientos)
+                self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoTratamientos())
             elif opcion == "3":
-                self.vista.mostrarLista(self.controladorTratamiento.listaDiagnosticos)
+                self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoDiagnosticos())
             elif opcion == "4":
-                self.vista.mostrarLista(self.controladorTratamiento.listaVacunas)
+                self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoVacunas())
             elif opcion == "5":
-                self.vista.mostrarLista(self.controladorMascota.listarRazas())
+                self.vista.mostrarLista(self.controladorMascota.controladorRaza.listarRazas())
             elif opcion == "6":
-                self.vista.mostrarLista(self.controladorVeterinario.listaVeterinarios)
+                self.vista.mostrarLista(self.controladorVeterinario.mostrarInfoVeterinarios())
             elif opcion == "0":
                 break
             else:
