@@ -1,17 +1,6 @@
+
 class VistaConsulta:
 
-      def mensajeBienvenida(self):
-            print("\n****Bienvenido****\n")
-
-      def mensajeDespedida(self):
-            print("Muchas Gracias. Hasta pronto!!")
-
-      def mensajeError(self):
-            print("Opcion incorrecta. Intente de nuevo")
-
-      def altaObaja(self):
-            opc = input("Realizar Alta o baja (a/b): ")
-            return opc
 
       def menuAltasyBajas(self):
             print("\n"
@@ -24,18 +13,6 @@ class VistaConsulta:
                   "7 - Vacuna\n"
                   "0 - Atras\n\n")
             opcion = input("Elija Opcion: ")
-            return opcion
-
-      def menuListas(self):
-            print("\n"
-                  "1 - Listado Mascotas\n"
-                  "2 - Listado Tratamientos\n"
-                  "3 - Listado Diagnosticos\n"
-                  "4 - Listado Vacunas\n"
-                  "5 - Listado Razas\n"
-                  "6 - Listado Veterinarios\n"
-                  "0 - Atras\n\n")
-            opcion = input("Elija el Listado que quiere ver: ")
             return opcion
 
       def mostrarMenuDatos(self):
@@ -60,20 +37,6 @@ class VistaConsulta:
                   "0 - Salir\n\n")
             opcion = input("Elija opcion deseada: ")
             return opcion
-
-      def getDato(self):
-            codigo = input("\n\nSeleccione un codigo: ")
-            return codigo
-
-      def mostrarLista(self, lista):
-            for i in lista:
-                  print(i)
-
-      def mostrarDato(self, dato):
-            print(dato)
-
-      def mensajeNoFichaMedica(self):
-            print("\nNo Tiene Ficha Medica Aun\n")
 
       def mostrarTratamientosXmascota(self, cantidad):
             print(f"\nLa Mascota seleccionada tiene {cantidad} tratamientos\n")

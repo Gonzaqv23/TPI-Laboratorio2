@@ -1,11 +1,9 @@
 from Model.Tratamiento import Tratamiento
 from Model.Vacuna import Vacuna
 from Model.Diagnostico import Diagnostico
-from View.VistaTratamiento import VistaTratamiento
 
 class ControladorTratamiento:
     def __init__(self):
-        self.vista = VistaTratamiento()
         self.listaTratamientos = []
         self.listaVacunas = []
         self.listaDiagnosticos = []
@@ -31,20 +29,50 @@ class ControladorTratamiento:
             codigo, descripcion, estado = linea.strip().split(",")
             self.listaDiagnosticos.append(Diagnostico(int(codigo), descripcion, estado))
 
-    def buscarTratamiento(self, codigo):
+    def buscarTratamientoxCodigo(self, codigo):
         for trat in self.listaTratamientos:
             if int(trat.codigo) == int(codigo):
                 return trat
 
-    def buscarVacuna(self, codigo):
+    def buscarDiagnosticoxCodigo(self, codigo):
+        for diag in self.listaDiagnosticos:
+            if int(diag.codigo) == int(codigo):
+                return diag
+
+    def buscarVacunaxCodigo(self, codigo):
         for vac in self.listaVacunas:
             if int(vac.codigo) == int(codigo):
                 return vac
 
-    def buscarDiagnostico(self, codigo):
+    def buscarTratamiento(self, nombre):
+        for trat in self.listaTratamientos:
+            if trat.descripcion == nombre:
+                return trat
+
+    def buscarVacuna(self, nombre):
+        for vac in self.listaVacunas:
+            if vac.nombre == nombre:
+                return vac
+
+    def buscarDiagnostico(self, nombre):
         for diag in self.listaDiagnosticos:
-            if int(diag.codigo) == int(codigo):
+            if diag.nombre == nombre:
                 return diag
+
+    def getCodigoxNombreTratamiento(self, nombre):
+        for trat in self.listaTratamientos:
+            if trat.descripcion == nombre:
+                return trat.codigo
+
+    def getCodigoxNombreDiagnostico(self, nombre):
+        for diag in self.listaDiagnosticos:
+            if diag.nombre == nombre:
+                return diag.codigo
+
+    def getCodigoxNombreVacuna(self, nombre):
+        for vac in self.listaVacunas:
+            if vac.nombre == nombre:
+                return vac.codigo
 
     def mostrarInfoDiagnosticos(self):
         diagnosticos = ["Diagnosticos"]

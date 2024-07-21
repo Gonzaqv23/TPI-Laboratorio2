@@ -1,15 +1,21 @@
 from Model.Consulta import Consulta
-from View.VistaConsulta import VistaConsulta
 from datetime import date
 import random
 
 class ControladorConsulta:
-    def __init__(self, controladorMascota, controladorTratamiento, controladorVeterinario):
-        self.vista = VistaConsulta()
+    def __init__(self, controladorMascota, controladorTratamiento, controladorVeterinario, vista):
+        self.vista = vista
         self.controladorMascota = controladorMascota
         self.controladorTratamiento = controladorTratamiento
         self.controladorVeterinario =controladorVeterinario
         self.listaConsultas = []
+        self.vista.configurarComboboxMascotas(self.controladorMascota.listaMascotas)
+        self.vista.configurarComboboxVeterinario(self.controladorVeterinario.listaVeterinarios)
+        self.vista.configurarComboboxDiagnostico(self.controladorTratamiento.listaDiagnosticos)
+        self.vista.configurarComboboxTratamiento(self.controladorTratamiento.listaTratamientos)
+        self.vista.configurarComboboxVacuna(self.controladorTratamiento.listaVacunas)
+        self.vista.configurarBotonHacerConsulta(self.hacerConsulta)
+        self.vista.configurarBotonListados(self.mostrarListado)
 
     def cargarConsultas(self):
         with open("consultas.txt") as file:
@@ -17,11 +23,11 @@ class ControladorConsulta:
         for linea in lineas:
             datos = linea.strip().split(",")
             codigo = datos[0]
-            masc = self.controladorMascota.buscarMascota(datos[1])
-            vet = self.controladorVeterinario.buscarVeterinario(datos[2])
-            diag = self.controladorTratamiento.buscarDiagnostico(datos[3])
-            trat = self.controladorTratamiento.buscarTratamiento(datos[4])
-            vac = self.controladorTratamiento.buscarVacuna(datos[5])
+            masc = self.controladorMascota.buscarMascotaxCodigo(datos[1])
+            vet = self.controladorVeterinario.buscarVeterinarioxCodigo(datos[2])
+            diag = self.controladorTratamiento.buscarDiagnosticoxCodigo(datos[3])
+            trat = self.controladorTratamiento.buscarTratamientoxCodigo(datos[4])
+            vac = self.controladorTratamiento.buscarVacunaxCodigo(datos[5])
             fecha = datos[6]
             consulta = Consulta(int(codigo), masc, vet, diag, trat, vac, fecha)
             self.listaConsultas.append(consulta)
@@ -34,27 +40,24 @@ class ControladorConsulta:
 
     def hacerConsulta(self):
         codigo = random.randint(20, 399)
-        self.vista.mostrarLista(self.controladorMascota.mostrarInfo())
-        mascota = self.vista.getDato()
+        datos = self.vista.getDatosConsulta()
+        mascota, veterinario, diagnostico, tratamiento, vacuna = datos.split(",")
         objMascota = self.controladorMascota.buscarMascota(mascota)
-        self.vista.mostrarLista(self.controladorVeterinario.mostrarInfo())
-        veterinario = self.vista.getDato()
         objVeterinario = self.controladorVeterinario.buscarVeterinario(veterinario)
-        self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoDiagnosticos())
-        disgnostico = self.vista.getDato()
-        objDiagnostico = self.controladorTratamiento.buscarDiagnostico(disgnostico)
-        self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoTratamientos())
-        tratamiento = self.vista.getDato()
+        objDiagnostico = self.controladorTratamiento.buscarDiagnostico(diagnostico)
         objTratamiento = self.controladorTratamiento.buscarTratamiento(tratamiento)
-        self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoVacunas())
-        vacuna = self.vista.getDato()
         objVacuna = self.controladorTratamiento.buscarVacuna(vacuna)
         fecha = date.today()
-        consulta = Consulta(codigo,objMascota,objVeterinario,objDiagnostico,objTratamiento,objVacuna,fecha)
-        self.listaConsultas.append(consulta)
-        objMascota.cargarFichaMedica(consulta)
-        self.vista.mostrarDato(consulta)
-        self.archivarConsulta(codigo,mascota,veterinario,disgnostico,tratamiento,vacuna,fecha)
+        objConsulta = Consulta(codigo, objMascota, objVeterinario, objDiagnostico, objTratamiento, objVacuna, fecha)
+        self.listaConsultas.append(objConsulta)
+        objMascota.cargarFichaMedica(objConsulta)
+        self.vista.mostrarMensajeConsulta(objConsulta)
+        codMascota = self.controladorMascota.getCodigoxNombre(mascota)
+        codVeterinario = self.controladorVeterinario.getCodigoxNombre(veterinario)
+        codDiagnostico = self.controladorTratamiento.getCodigoxNombreDiagnostico(diagnostico)
+        codTratamiento = self.controladorTratamiento.getCodigoxNombreTratamiento(tratamiento)
+        codVacuna = self.controladorTratamiento.getCodigoxNombreVacuna(vacuna)
+        self.archivarConsulta(codigo, codMascota, codVeterinario, codDiagnostico, codTratamiento, codVacuna, fecha)
 
     def archivarConsulta(self, codigo,mascota,veterinario,disgnostico,tratamiento,vacuna,fecha):
         with open("consultas.txt", "a") as file:
@@ -62,7 +65,7 @@ class ControladorConsulta:
             file.write(nueva_consulta)
 
     def mostrarFichaMedica(self):
-        self.vista.mostrarLista(self.controladorMascota.mostrarInfoTodas())
+        self.vista.mostrarLista(self.controladorMascota.mostrarInfo())
         mascota = self.vista.getDato()
         objMascota = self.controladorMascota.buscarMascota(mascota)
         if (objMascota.mostrarFichaMedica()):
@@ -81,7 +84,7 @@ class ControladorConsulta:
 
     def tratamientosXmascota(self):
         cant = 0
-        self.vista.mostrarLista(self.controladorMascota.mostrarInfoTodas())
+        self.vista.mostrarLista(self.controladorMascota.mostrarInfo())
         mascota = self.vista.getDato()
         objMascota = self.controladorMascota.buscarMascota(mascota)
         for consulta in self.listaConsultas:
@@ -127,25 +130,40 @@ class ControladorConsulta:
                 self.vista.mensajeError()
 
 
-    def menuListas(self):
-        while True:
-            opcion = self.vista.menuListas()
-            if opcion == "1":
-                self.vista.mostrarLista(self.controladorMascota.mostrarInfoMascotas())
-            elif opcion == "2":
-                self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoTratamientos())
-            elif opcion == "3":
-                self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoDiagnosticos())
-            elif opcion == "4":
-                self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoVacunas())
-            elif opcion == "5":
-                self.vista.mostrarLista(self.controladorMascota.controladorRaza.listarRazas())
-            elif opcion == "6":
-                self.vista.mostrarLista(self.controladorVeterinario.mostrarInfoVeterinarios())
-            elif opcion == "0":
-                break
-            else:
-                self.vista.mensajeError()
+    def mostrarListado(self):
+        opcion = self.vista.getOpcion()
+        if opcion == 1:
+            self.vista.limpiarListbox()
+            for item in self.listaConsultas:
+                self.vista.insertarEnListados(item)
+        elif opcion == 2:
+            self.vista.limpiarListbox()
+            for item in self.controladorMascota.listaMascotas:
+                self.vista.insertarEnListados(item)
+        elif opcion == 3:
+            self.vista.limpiarListbox()
+            for item in self.controladorTratamiento.listaDiagnosticos:
+                self.vista.insertarEnListados(item)
+        elif opcion == 4:
+            self.vista.limpiarListbox()
+            for item in self.controladorMascota.controladorPropietario.listaPropietarios:
+                self.vista.insertarEnListados(item)
+        elif opcion == 5:
+            self.vista.limpiarListbox()
+            for item in self.controladorTratamiento.listaTratamientos:
+                self.vista.insertarEnListados(item)
+        elif opcion == 6:
+            self.vista.limpiarListbox()
+            for item in self.controladorVeterinario.listaVeterinarios:
+                self.vista.insertarEnListados(item)
+        elif opcion == 7:
+            self.vista.limpiarListbox()
+            for item in self.controladorTratamiento.listaVacunas:
+                self.vista.insertarEnListados(item)
+        elif opcion == 8:
+            self.vista.limpiarListbox()
+            for item in self.controladorMascota.controladorRaza.listaRazas:
+                self.vista.insertarEnListados(item)
 
     def menuDatos(self):
         while True:
@@ -188,5 +206,3 @@ class ControladorConsulta:
 
     def iniciar(self):
         self.cargarConsultas()
-        self.vista.mensajeBienvenida()
-        self.menu()

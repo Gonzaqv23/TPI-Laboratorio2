@@ -22,7 +22,7 @@ class Tratamiento:
             return f"{self.codigo} - {self.descripcion} - Estado: NO habilitado"
 
     def __str__(self):
-        return f"Tratamiento: {self.descripcion}"
+        return f"{self.descripcion}"
 
     def __repr__(self):
-        return f"Tratamiento: {self.descripcion}"
+        return f"{self.descripcion}"

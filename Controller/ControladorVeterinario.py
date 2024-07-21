@@ -1,9 +1,7 @@
 from Model.Veterinario import Veterinario
-from View.VistaVeterinario import VistaVeterinario
 
 class ControladorVeterinario:
     def __init__(self):
-        self.vista = VistaVeterinario()
         self.listaVeterinarios = []
 
     def cargarVeterinarios(self):
@@ -13,10 +11,20 @@ class ControladorVeterinario:
             codigo, nombre, estado, legajo = linea.strip().split(",")
             self.listaVeterinarios.append(Veterinario(int(codigo), nombre, estado, legajo))
 
-    def buscarVeterinario(self, codigo):
+    def buscarVeterinarioxCodigo(self, codigo):
         for vet in self.listaVeterinarios:
             if int(vet.codigo) == int(codigo):
                 return vet
+
+    def buscarVeterinario(self, nombre):
+        for vet in self.listaVeterinarios:
+            if vet.nombre == nombre:
+                return vet
+
+    def getCodigoxNombre(self, nombre):
+        for vet in self.listaVeterinarios:
+            if vet.nombre == nombre:
+                return vet.codigo
 
     def mostrarInfo(self):
         veterinariosActivos = ["Veterinarios Activos"]

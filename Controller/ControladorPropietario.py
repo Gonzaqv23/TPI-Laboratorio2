@@ -1,11 +1,9 @@
 from Model.Propietario import Propietario
-from View.VistaPropietario import VistaPropietario
 import random
 
 
 class ControladorPropietario:
     def __init__(self):
-        self.vista = VistaPropietario()
         self.listaPropietarios = []
 
     def cargarPropietarios(self):

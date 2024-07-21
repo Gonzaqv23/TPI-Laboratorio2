@@ -12,9 +12,9 @@ class Consulta:
         return self.mascota
 
     def __str__(self):
-        return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}\n"
+        return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}, \n"
                 f"{self.tratamiento}, {self.vacuna}, {self.fecha}\n")
 
     def __repr__(self):
-        return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}\n"
+        return (f"{self.codigo} de {self.mascota}, {self.veterinario}, {self.diagnostico}, \n"
                 f"{self.tratamiento}, {self.vacuna}, {self.fecha}\n")

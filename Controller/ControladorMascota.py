@@ -1,10 +1,9 @@
 from Model.Mascota import Mascota
-from View.VistaMascota import VistaMascota
 import random
 
 class ControladorMascota:
     def __init__(self, controladorRaza, controladorPropietario):
-        self.vista = VistaMascota()
+
         self.controladorRaza = controladorRaza
         self.controladorPropietario = controladorPropietario
         self.listaMascotas = []
@@ -21,10 +20,20 @@ class ControladorMascota:
             estado = datos[4]
             self.listaMascotas.append(Mascota(int(codigo), nombre, propietario, raza,int(estado)))
 
-    def buscarMascota(self, codigo):
+    def buscarMascota(self, nombre):
+        for masc in self.listaMascotas:
+            if masc.nombre == nombre:
+                return masc
+
+    def buscarMascotaxCodigo(self, codigo):
         for masc in self.listaMascotas:
             if int(masc.codigo) == int(codigo):
                 return masc
+
+    def getCodigoxNombre(self, nombre):
+        for masc in self.listaMascotas:
+            if masc.nombre == nombre:
+                return masc.codigo
 
     def mostrarInfo(self):
         mascotasActivas = ["Mascotas"]

@@ -46,7 +46,7 @@ class Mascota:
             return f"{self.codigo} - {self.nombre} - Estado: NO habilitado"
 
     def __str__(self):
-        return f"{self.nombre}, {self.propietario}, {self.raza}"
+        return f"{self.nombre}"
 
     def __repr__(self):
-        return f"{self.nombre}, {self.propietario}, {self.raza}"
+        return f"{self.nombre}"
