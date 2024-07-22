@@ -2,11 +2,13 @@ from Model.Mascota import Mascota
 import random
 
 class ControladorMascota:
-    def __init__(self, controladorRaza, controladorPropietario):
+    def __init__(self, controladorRaza, controladorPropietario, vista):
 
         self.controladorRaza = controladorRaza
         self.controladorPropietario = controladorPropietario
+        self.vista = vista
         self.listaMascotas = []
+        self.vista.configurarBotonRegistrarMascota(self.registrarNuevaMascota)
 
     def cargarMascotas(self):
         with open("mascotas.txt") as file:
@@ -35,40 +37,20 @@ class ControladorMascota:
             if masc.nombre == nombre:
                 return masc.codigo
 
-    def mostrarInfo(self):
-        mascotasActivas = ["Mascotas"]
-        for masc in self.listaMascotas:
-            if masc.isActiva():
-                mascotasActivas.append(masc.getInfo())
-        return mascotasActivas
 
-    def mostrarInfoMascotas(self):
-        mascotas = ["Mascotas"]
-        for masc in self.listaMascotas:
-            mascotas.append(masc.getEstado())
-        return mascotas
-
-    def mostrarInfoPropietarios(self):
-        propietarios = ["Propietarios"]
-        for prop in self.controladorPropietario.listaPropietarios:
-            propietarios.append(prop.getInfo())
-        return propietarios
-
-    def registrarMascotas(self):
+    def registrarNuevaMascota(self):
         codigo = random.randint(30, 499)
-        nombre = self.vista.getNombre()
-        self.vista.mostrarLista(self.mostrarInfoPropietarios())
-        propietario = self.vista.getDato()
-        objPropietario = self.controladorPropietario.buscarPropietario(propietario)
-        self.vista.mostrarLista(self.controladorRaza.listarInfoRazas())
-        raza = self.vista.getDato()
-        objRaza = self.controladorRaza.buscarRaza(raza)
+        nombre, propietario, raza = self.vista.getNuevaMascota().split(",")
+        objPropietario = self.controladorPropietario.buscarPropietarioxNombre(propietario)
+        objRaza = self.controladorRaza.buscarRazaxNombre(raza)
         estado = "1"
         mascota = Mascota(codigo, nombre, objPropietario, objRaza, estado)
         self.listaMascotas.append(mascota)
-        self.vista.mostrarDato(mascota)
-        self.archivarMascota(codigo, nombre, propietario, raza, estado)
-
+        self.vista.configurarComboboxFicha(self.listaMascotas)
+        self.vista.configurarComboboxMascotas(self.listaMascotas)
+        cod_propietario = self.controladorPropietario.buscarCodigoxNombre(propietario)
+        cod_raza = self.controladorRaza.buscarCodigoxNombre(raza)
+        self.archivarMascota(codigo, nombre, cod_propietario, cod_raza, estado)
 
     def archivarMascota(self, codigo, nombre, propietario, raza, estado):
         with open("mascotas.txt", "a") as file:
@@ -89,36 +71,6 @@ class ControladorMascota:
         else:
             self.vista.mensajeError()
 
-    def cambiarEstadoRaza(self):
-        self.vista.mostrarLista(self.controladorRaza.listarInfoRazas())
-        raza = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objRaza = self.controladorRaza.buscarRaza(raza)
-        if altaObaja == "a":
-            objRaza.darAlta()
-            self.vista.mostrarDato(objRaza.getEstado())
-        elif altaObaja == "b":
-            objRaza.darBaja()
-            self.vista.mostrarDato(objRaza.getEstado())
-        else:
-            self.vista.mensajeError()
-
-    def cambiarEstadoPropietario(self):
-        self.vista.mostrarLista(self.controladorPropietario.listarPropietarios())
-        propietario = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objPropietario = self.controladorPropietario.buscarPropietario(propietario)
-        if altaObaja == "a":
-            objPropietario.darAlta()
-            self.vista.mostrarDato(objPropietario.getEstado())
-        elif altaObaja == "b":
-            objPropietario.darBaja()
-            self.vista.mostrarDato(objPropietario.getEstado())
-        else:
-            self.vista.mensajeError()
-
-    def agregarPropietario(self):
-        self.controladorPropietario.registrarPropietario()
 
     def mascotasXpropietario(self):
         cant = 0

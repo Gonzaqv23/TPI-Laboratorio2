@@ -18,6 +18,16 @@ class ControladorPropietario:
             if int(prop.codigo) == int(codigo):
                 return prop
 
+    def buscarPropietarioxNombre(self, nombre):
+        for prop in self.listaPropietarios:
+            if prop.nombre == nombre:
+                return prop
+
+    def buscarCodigoxNombre(self, nombre):
+        for prop in self.listaPropietarios:
+            if prop.nombre == nombre:
+                return prop.codigo
+
     def registrarPropietario(self):
         codigo = random.randint(30, 499)
         nombre = self.vista.getNombre()
@@ -26,6 +36,20 @@ class ControladorPropietario:
         self.listaPropietarios.append(propietario)
         self.vista.mostrarDato(propietario)
         self.archivarPropietario(codigo, nombre, estado)
+
+    def cambiarEstadoPropietario(self):
+        self.vista.mostrarLista(self.controladorPropietario.listarPropietarios())
+        propietario = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objPropietario = self.controladorPropietario.buscarPropietario(propietario)
+        if altaObaja == "a":
+            objPropietario.darAlta()
+            self.vista.mostrarDato(objPropietario.getEstado())
+        elif altaObaja == "b":
+            objPropietario.darBaja()
+            self.vista.mostrarDato(objPropietario.getEstado())
+        else:
+            self.vista.mensajeError()
 
     def archivarPropietario(self, codigo, nombre, estado):
         with open("propietarios.txt", "a") as file:

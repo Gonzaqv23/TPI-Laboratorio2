@@ -26,19 +26,6 @@ class ControladorVeterinario:
             if vet.nombre == nombre:
                 return vet.codigo
 
-    def mostrarInfo(self):
-        veterinariosActivos = ["Veterinarios Activos"]
-        for vet in self.listaVeterinarios:
-            if vet.isActiva():
-                veterinariosActivos.append(vet.getInfo())
-        return veterinariosActivos
-
-    def mostrarInfoVeterinarios(self):
-        veterinarios = ["Veterinarios"]
-        for vet in self.listaVeterinarios:
-            veterinarios.append(vet.getEstado())
-        return veterinarios
-
     def cambiarEstadoVeterinario(self):
         self.vista.mostrarLista(self.mostrarInfo())
         veterinario = self.vista.getDato()

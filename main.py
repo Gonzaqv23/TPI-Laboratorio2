@@ -15,7 +15,7 @@ def main():
     controladorPropietario.iniciar()
     controladorRaza = ControladorRaza()
     controladorRaza.iniciar()
-    controladorMascota = ControladorMascota(controladorRaza, controladorPropietario)
+    controladorMascota = ControladorMascota(controladorRaza, controladorPropietario, vista)
     controladorMascota.iniciar()
     controladorTratamiento = ControladorTratamiento()
     controladorTratamiento.iniciar()

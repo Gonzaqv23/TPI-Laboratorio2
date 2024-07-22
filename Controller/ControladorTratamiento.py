@@ -74,24 +74,6 @@ class ControladorTratamiento:
             if vac.nombre == nombre:
                 return vac.codigo
 
-    def mostrarInfoDiagnosticos(self):
-        diagnosticos = ["Diagnosticos"]
-        for diag in self.listaDiagnosticos:
-            diagnosticos.append(diag.getEstado())
-        return diagnosticos
-
-    def mostrarInfoTratamientos(self):
-        tratamientos = ["Tratamientos"]
-        for trat in self.listaTratamientos:
-            tratamientos.append(trat.getEstado())
-        return tratamientos
-
-    def mostrarInfoVacunas(self):
-        vacunas = ["Vacunas"]
-        for vacuna in self.listaVacunas:
-            vacunas.append(vacuna.getEstado())
-        return vacunas
-
     def cambiarEstadoTratamiento(self):
         self.vista.mostrarLista(self.mostrarInfoTratamientos())
         tratamiento = self.vista.getDato()
@@ -119,6 +101,38 @@ class ControladorTratamiento:
             self.vista.mostrarDato(objVacuna.getEstado())
         else:
             self.vista.mensajeError()
+
+    def cambiarEstadoDiagnostico(self):
+        self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoDiagnosticos())
+        disgnostico = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objDiagnostico = self.controladorTratamiento.buscarDiagnostico(disgnostico)
+        if altaObaja == "a":
+            objDiagnostico.darAlta()
+            self.vista.mostrarDato(objDiagnostico.getEstado())
+        elif altaObaja == "b":
+            objDiagnostico.darBaja()
+            self.vista.mostrarDato(objDiagnostico.getEstado())
+        else:
+            self.vista.mensajeError()
+
+    def rankingDiagnosticos(self):
+        conteo_diagnosticos = {}
+        for consulta in self.listaConsultas:
+            codigo_diagnostico = consulta.diagnostico.getCodigo()
+            conteo_diagnosticos[codigo_diagnostico] = conteo_diagnosticos.get(codigo_diagnostico, 0) + 1
+        diagnosticos_ordenados = sorted(conteo_diagnosticos.items(), key=lambda x: x[1], reverse=True)
+        for codigo, frecuencia in diagnosticos_ordenados:
+            self.vista.mostrarRanking(self.controladorTratamiento.buscarDiagnostico(codigo),frecuencia)
+
+    def tratamientosXmascota(self):
+        cant = 0
+        mascota = self.vista.getDato()
+        objMascota = self.controladorMascota.buscarMascota(mascota)
+        for consulta in self.listaConsultas:
+            if consulta.getMascota() == objMascota:
+                cant += 1
+        self.vista.mostrarTratamientosXmascota(cant)
 
     def iniciar(self):
         self.cargarTratamientos()

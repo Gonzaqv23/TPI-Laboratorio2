@@ -16,17 +16,29 @@ class ControladorRaza:
             if int(raza.codigo) == int(codigo):
                 return raza
 
-    def listarInfoRazas(self):
-        lista = ["Raza"]
+    def buscarRazaxNombre(self, nombre):
         for raza in self.listaRazas:
-            lista.append(raza.getInfo())
-        return lista
+            if raza.codigo == nombre:
+                return raza
 
-    def listarRazas(self):
-        lista = ["Razas"]
+    def buscarCodigoxNombre(self, nombre):
         for raza in self.listaRazas:
-            lista.append(raza.getEstado())
-        return lista
+            if raza.nombre == nombre:
+                return raza.codigo
+
+    def cambiarEstadoRaza(self):
+        self.vista.mostrarLista(self.controladorRaza.listarInfoRazas())
+        raza = self.vista.getDato()
+        altaObaja = self.vista.altaObaja()
+        objRaza = self.controladorRaza.buscarRaza(raza)
+        if altaObaja == "a":
+            objRaza.darAlta()
+            self.vista.mostrarDato(objRaza.getEstado())
+        elif altaObaja == "b":
+            objRaza.darBaja()
+            self.vista.mostrarDato(objRaza.getEstado())
+        else:
+            self.vista.mensajeError()
 
 
     def iniciar(self):

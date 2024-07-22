@@ -26,7 +26,7 @@ class Raza:
             return f"{self.codigo} - {self.nombre} - Estado: NO habilitado"
 
     def __str__(self):
-        return f"Raza: {self.nombre}"
+        return f"{self.nombre}"
 
     def __repr__(self):
-        return f"Raza: {self.nombre}"
+        return f"{self.nombre}"
