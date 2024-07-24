@@ -1,5 +1,6 @@
 1,Dosis Vacuna,1
-2,aplicar yeso,1
-3,administrar pastilla,1
-4,aplicar inyeccion,1
-5,aplicar crema,1
+2,Aplicar yeso,1
+3,Administrar pastilla,1
+4,Aplicar inyeccion,1
+5,Aplicar crema,1
+336,Inyectar Antibiotico,1

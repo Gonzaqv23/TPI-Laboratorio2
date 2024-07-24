@@ -11,6 +11,7 @@ class Vista:
 
         self.notebook = ttk.Notebook(self.root)
         self.notebook.pack(fill="both", expand=True)
+        self.fondo = tk.PhotoImage(file="Veterinaria.png")
         self.tab1 = tk.Frame(self.notebook)
         self.tab2 = tk.Frame(self.notebook)
         self.tab3 = tk.Frame(self.notebook)
@@ -25,6 +26,8 @@ class Vista:
         self.notebook.add(self.tab6, text="Informacion")
 
         # TAB 1: Realizar Consulta
+        self.fondo1 = tk.Label(self.tab1, image=self.fondo)
+        self.fondo1.place(x=0, y=0, relwidth=1, relheight=1)
         self.imagen = tk.PhotoImage(file="perro.png")
         self.label_imagen = tk.Label(self.tab1, image=self.imagen)
         self.label_imagen.pack(pady=15)
@@ -53,6 +56,8 @@ class Vista:
         self.boton_hacer_consulta.pack(pady=35)
 
         # TAB 2: Mostrar listados
+        self.fondo2 = tk.Label(self.tab2, image=self.fondo)
+        self.fondo2.place(x=0, y=0, relwidth=1, relheight=1)
         self.listbox_listados = tk.Listbox(self.tab2, width=75, height=25)
         self.listbox_listados.pack(pady=20)
         self.opcion = tk.IntVar()
@@ -78,6 +83,8 @@ class Vista:
 
         # TAB 3: Generar Ficha Medica
 
+        self.fondo3 = tk.Label(self.tab3, image=self.fondo)
+        self.fondo3.place(x=0, y=0, relwidth=1, relheight=1)
         self.label_generar_ficha = tk.Label(self.tab3, text="Generar Ficha Medica:", font=("Aerial", 11))
         self.label_generar_ficha.pack(pady=15)
         self.lista_ficha = tk.Listbox(self.tab3, width=90, height=25)
@@ -93,6 +100,8 @@ class Vista:
 
         #TAB 4: Registros
 
+        self.fondo4 = tk.Label(self.tab4, image=self.fondo)
+        self.fondo4.place(x=0, y=0, relwidth=1, relheight=1)
         self.label_registrar_mascota = tk.Label(self.tab4, text="Registrar Nueva Mascota", font=("Aerial", 11, "bold"))
         self.label_registrar_mascota.place(x=60, y=10)
         self.label_nombre_nueva_mascota = tk.Label(self.tab4, text="Nombre:")
@@ -115,50 +124,60 @@ class Vista:
         self.label_registrar_propietario = tk.Label(self.tab4, text="Registrar Nuevo Propietario", font=("Aerial", 11, "bold"))
         self.label_registrar_propietario.place(x=60, y=170)
         self.nombre_propietario = tk.StringVar()
-        self.combo_nombre_propietario = tk.Entry(self.tab4, textvariable=self.nombre_propietario)
-        self.combo_nombre_propietario.place(x=75, y=220)
+        self.entrada_nombre_propietario = tk.Entry(self.tab4, textvariable=self.nombre_propietario)
+        self.entrada_nombre_propietario.place(x=75, y=220)
         self.boton_registrar_propietario = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_propietario.place(x=105, y=250)
 
         self.label_registrar_diagnostico = tk.Label(self.tab4, text="Registrar Nuevo Diagnostico", font=("Aerial", 11, "bold"))
         self.label_registrar_diagnostico.place(x=370, y=170)
         self.nombre_diagnostico = tk.StringVar()
-        self.combo_nombre_diagnostico = tk.Entry(self.tab4, textvariable=self.nombre_diagnostico)
-        self.combo_nombre_diagnostico.place(x=385, y=220)
+        self.entrada_nombre_diagnostico = tk.Entry(self.tab4, textvariable=self.nombre_diagnostico)
+        self.entrada_nombre_diagnostico.place(x=385, y=220)
         self.boton_registrar_diagnostico = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_diagnostico.place(x=415, y=250)
 
         self.label_registrar_raza = tk.Label(self.tab4, text="Registrar Nueva Raza", font=("Aerial", 11, "bold"))
         self.label_registrar_raza.place(x=60, y=320)
         self.nombre_raza = tk.StringVar()
-        self.combo_nombre_raza = tk.Entry(self.tab4, textvariable=self.nombre_raza)
-        self.combo_nombre_raza.place(x=75, y=385)
+        self.entrada_nombre_raza = tk.Entry(self.tab4, textvariable=self.nombre_raza)
+        self.entrada_nombre_raza.place(x=75, y=385)
         self.boton_registrar_raza = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_raza.place(x=105, y=415)
 
         self.label_registrar_tratamiento = tk.Label(self.tab4, text="Registrar Nuevo Tratamiento", font=("Aerial", 11, "bold"))
         self.label_registrar_tratamiento.place(x=370, y=320)
         self.nombre_tratamiento = tk.StringVar()
-        self.combo_nombre_tratamiento = tk.Entry(self.tab4, textvariable=self.nombre_tratamiento)
-        self.combo_nombre_tratamiento.place(x=385, y=385)
+        self.entrada_nombre_tratamiento = tk.Entry(self.tab4, textvariable=self.nombre_tratamiento)
+        self.entrada_nombre_tratamiento.place(x=385, y=385)
         self.boton_registrar_tratamiento = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_tratamiento.place(x=415, y=415)
 
         self.label_registrar_vacuna = tk.Label(self.tab4, text="Registrar Nueva Vacuna", font=("Aerial", 11, "bold"))
         self.label_registrar_vacuna.place(x=60, y=490)
         self.nombre_vacuna = tk.StringVar()
-        self.combo_nombre_vacuna = tk.Entry(self.tab4, textvariable=self.nombre_vacuna)
-        self.combo_nombre_vacuna.place(x=75, y=545)
+        self.entrada_nombre_vacuna = tk.Entry(self.tab4, textvariable=self.nombre_vacuna)
+        self.entrada_nombre_vacuna.place(x=75, y=545)
         self.boton_registrar_vacuna = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_vacuna.place(x=105, y=580)
 
         self.label_registrar_veterinario = tk.Label(self.tab4, text="Registrar Nuevo Veterinario", font=("Aerial", 11, "bold"))
         self.label_registrar_veterinario.place(x=370, y=490)
         self.nombre_veterinario = tk.StringVar()
-        self.combo_nombre_veterinario = tk.Entry(self.tab4, textvariable=self.nombre_veterinario)
-        self.combo_nombre_veterinario.place(x=385, y=545)
+        self.entrada_nombre_veterinario = tk.Entry(self.tab4, textvariable=self.nombre_veterinario)
+        self.entrada_nombre_veterinario.place(x=385, y=545)
         self.boton_registrar_veterinario = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_veterinario.place(x=415, y=580)
+
+        #TAB 5: Altas y bajas
+
+        self.fondo5 = tk.Label(self.tab5, image=self.fondo)
+        self.fondo5.place(x=0, y=0, relwidth=1, relheight=1)
+
+        #TAB 6: Informacion
+
+        self.fondo6 = tk.Label(self.tab6, image=self.fondo)
+        self.fondo6.place(x=0, y=0, relwidth=1, relheight=1)
 
     def configurarComboboxMascotas(self, lista):
         self.combobox_mascota["values"] = lista
@@ -195,6 +214,48 @@ class Vista:
 
     def configurarBotonRegistrarMascota(self, command):
         self.boton_registrar_mascota.config(command=command)
+
+    def configurarBotonRegistrarPropietario(self, command):
+        self.boton_registrar_propietario.config(command=command)
+
+    def configurarBotonRegistrarDiagnostico(self, command):
+        self.boton_registrar_diagnostico.config(command=command)
+
+    def configurarBotonRegistrarRaza(self, command):
+        self.boton_registrar_raza.config(command=command)
+
+    def configurarBotonRegistrarTratamiento(self, command):
+        self.boton_registrar_tratamiento.config(command=command)
+
+    def configurarBotonRegistrarVacuna(self, command):
+        self.boton_registrar_vacuna.config(command=command)
+
+    def configurarBotonRegistrarVeterinario(self, command):
+        self.boton_registrar_veterinario.config(command=command)
+
+    def getNuevoVeterinario(self):
+        nuevo_veterinario = self.entrada_nombre_veterinario.get()
+        return nuevo_veterinario
+
+    def getNuevaVacuna(self):
+        nueva_vacuna = self.entrada_nombre_vacuna.get()
+        return nueva_vacuna
+
+    def getNuevoPropietario(self):
+        nuevo_propietario = self.entrada_nombre_propietario.get()
+        return nuevo_propietario
+
+    def getNuevoDiagnostico(self):
+        nuevo_diagnostico = self.entrada_nombre_diagnostico.get()
+        return nuevo_diagnostico
+
+    def getNuevaRaza(self):
+        nueva_raza = self.entrada_nombre_raza.get()
+        return nueva_raza
+
+    def getNuevoTratamiento(self):
+        nueva_tratamiento = self.entrada_nombre_tratamiento.get()
+        return nueva_tratamiento
 
     def getDatosConsulta(self):
         mascota = self.combobox_mascota.get()
@@ -234,6 +295,10 @@ class Vista:
     def mostrarMensajeImprimir(self):
         self.mensaje_imprimir = tk.messagebox.showinfo("Imprimir Ficha Medica", "La Ficha Medica\n"
                                                                                 "se envio a la cola de Impresion")
+
+    def mostrarMensajeRegistroExitoso(self):
+        self.mensaje_registro_exitoso = tk.messagebox.showinfo("Nuevo Registro", "Registro "
+                                                                                 "realizado Exitosamente")
 
     def getOpcion(self):
         opcion = self.opcion.get()

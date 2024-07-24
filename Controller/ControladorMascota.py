@@ -51,6 +51,7 @@ class ControladorMascota:
         cod_propietario = self.controladorPropietario.buscarCodigoxNombre(propietario)
         cod_raza = self.controladorRaza.buscarCodigoxNombre(raza)
         self.archivarMascota(codigo, nombre, cod_propietario, cod_raza, estado)
+        self.vista.mostrarMensajeRegistroExitoso()
 
     def archivarMascota(self, codigo, nombre, propietario, raza, estado):
         with open("mascotas.txt", "a") as file:

@@ -3,3 +3,5 @@
 3,Gastroenteritis,1
 4,Parasitos,1
 5,Infeccion,1
+180,Alergia Dermatologica,1
+42,Luxacion Articular,1

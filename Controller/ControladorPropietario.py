@@ -3,8 +3,10 @@ import random
 
 
 class ControladorPropietario:
-    def __init__(self):
+    def __init__(self, vista):
+        self.vista = vista
         self.listaPropietarios = []
+        self.vista.configurarBotonRegistrarPropietario(self.registrarPropietario)
 
     def cargarPropietarios(self):
         with open("propietarios.txt") as file:
@@ -30,12 +32,18 @@ class ControladorPropietario:
 
     def registrarPropietario(self):
         codigo = random.randint(30, 499)
-        nombre = self.vista.getNombre()
+        nombre = self.vista.getNuevoPropietario()
         estado = "1"
         propietario = Propietario(codigo, nombre, estado)
         self.listaPropietarios.append(propietario)
-        self.vista.mostrarDato(propietario)
+        self.vista.configurarComboPropietarioMascota(self.listaPropietarios)
         self.archivarPropietario(codigo, nombre, estado)
+        self.vista.mostrarMensajeRegistroExitoso()
+
+    def archivarPropietario(self, codigo, nombre, estado):
+        with open("propietarios.txt", "a") as file:
+            nuevo_propietario = f"\n{codigo},{nombre},{estado}"
+            file.write(nuevo_propietario)
 
     def cambiarEstadoPropietario(self):
         self.vista.mostrarLista(self.controladorPropietario.listarPropietarios())
@@ -50,11 +58,6 @@ class ControladorPropietario:
             self.vista.mostrarDato(objPropietario.getEstado())
         else:
             self.vista.mensajeError()
-
-    def archivarPropietario(self, codigo, nombre, estado):
-        with open("propietarios.txt", "a") as file:
-            nuevo_propietario = f"\n{codigo},{nombre},{estado}"
-            file.write(nuevo_propietario)
 
     def listarPropietarios(self):
         lista = []

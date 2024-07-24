@@ -10,3 +10,4 @@
 10,Cairn Terrier,1
 11,Persa,1
 12,Siames,0
+133,Caniche,1

@@ -8,3 +8,4 @@
 8,Enfermedad de Lyme,1
 9,Leishmaniosis,1
 10,Tétanos,1
+70,Gripe perruna,1
