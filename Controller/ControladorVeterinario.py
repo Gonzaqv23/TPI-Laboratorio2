@@ -45,19 +45,29 @@ class ControladorVeterinario:
             nuevo_veterinario = f"\n{codigo},{nombre}, {legajo},{estado}"
             file.write(nuevo_veterinario)
 
-    def cambiarEstadoVeterinario(self):
-        self.vista.mostrarLista(self.mostrarInfo())
-        veterinario = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
+    def cambiarEstadoVeterinario(self, veterinario):
         objVeterinario = self.buscarVeterinario(veterinario)
-        if altaObaja == "a":
-            objVeterinario.darAlta()
-            self.vista.mostrarDato(objVeterinario.getEstado())
-        elif altaObaja == "b":
-            objVeterinario.darBaja()
-            self.vista.mostrarDato(objVeterinario.getEstado())
-        else:
-            self.vista.mensajeError()
+        objVeterinario.cambiarEstado()
+        self.vista.limpiarListbox()
+        for vet in self.listaVeterinarios:
+            self.vista.insertarEnListados(f"{vet}-{vet.getEstado()}")
+        veterinarios_habilitados = [veter for veter in self.listaVeterinarios if veter.isHabilitado()]
+        self.vista.configurarComboboxVeterinario(veterinarios_habilitados)
+        self.cambiarEstadoArchivoVeterinario(veterinario)
+
+    def cambiarEstadoArchivoVeterinario(self, veterinario):
+        with open("veterinarios.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == veterinario:
+                if datos[3] == "1":
+                    datos[3] = "0"
+                elif datos[3] == "0":
+                    datos[3] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("veterinarios.txt", "w") as archivo:
+            archivo.writelines(lineas)
 
     def iniciar(self):
         self.cargarVeterinarios()

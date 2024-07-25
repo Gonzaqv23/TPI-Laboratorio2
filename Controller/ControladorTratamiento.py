@@ -79,6 +79,46 @@ class ControladorTratamiento:
             if vac.nombre == nombre:
                 return vac.codigo
 
+    def cambiarEstadoTratamiento(self, tratamiento):
+        objTratamiento = self.buscarTratamiento(tratamiento)
+        objTratamiento.cambiarEstado()
+        self.vista.limpiarListbox()
+        for trat in self.listaTratamientos:
+            self.vista.insertarEnListados(f"{trat}-{trat.getEstado()}")
+        tratamiento_habilitados = [tratam for tratam in self.listaTratamientos if tratam.isHabilitado()]
+        self.vista.configurarComboboxTratamiento(tratamiento_habilitados)
+        self.cambiarEstadoArchivoTratamiento(tratamiento)
+
+    def cambiarEstadoArchivoTratamiento(self, tratamiento):
+        with open("tratamientos.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == tratamiento:
+                if datos[2] == "1":
+                    datos[2] = "0"
+                elif datos[2] == "0":
+                    datos[2] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("tratamientos.txt", "w") as archivo:
+            archivo.writelines(lineas)
+
+    def registrarNuevoTratamiento(self):
+        codigo = random.randint(30, 499)
+        descripcion = self.vista.getNuevoTratamiento()
+        estado = "1"
+        tratamiento = Tratamiento(codigo, descripcion, estado)
+        self.listaTratamientos.append(tratamiento)
+        trat_habilitados = [trat for trat in self.listaTratamientos if trat.isHabilitado()]
+        self.vista.configurarComboboxTratamiento(trat_habilitados)
+        self.archivarTratamiento(codigo, descripcion, estado)
+        self.vista.mostrarMensajeRegistroExitoso()
+
+    def archivarTratamiento(self, codigo, descripcion, estado):
+        with open("tratamientos.txt", "a") as file:
+            nuevo_tratamiento = f"\n{codigo},{descripcion},{estado}"
+            file.write(nuevo_tratamiento)
+
     def registrarNuevoDiagnostico(self):
         codigo = random.randint(30, 499)
         nombre = self.vista.getNuevoDiagnostico()
@@ -93,21 +133,6 @@ class ControladorTratamiento:
         with open("diagnosticos.txt", "a") as file:
             nuevo_diagnostico = f"\n{codigo},{nombre},{estado}"
             file.write(nuevo_diagnostico)
-
-    def registrarNuevoTratamiento(self):
-        codigo = random.randint(30, 499)
-        descripcion = self.vista.getNuevoTratamiento()
-        estado = "1"
-        tratamiento = Tratamiento(codigo, descripcion, estado)
-        self.listaTratamientos.append(tratamiento)
-        self.vista.configurarComboboxTratamiento(self.listaTratamientos)
-        self.archivarTratamiento(codigo, descripcion, estado)
-        self.vista.mostrarMensajeRegistroExitoso()
-
-    def archivarTratamiento(self, codigo, descripcion, estado):
-        with open("tratamientos.txt", "a") as file:
-            nuevo_tratamiento = f"\n{codigo},{descripcion},{estado}"
-            file.write(nuevo_tratamiento)
 
     def registrarNuevaVacuna(self):
         codigo = random.randint(30, 499)
@@ -149,14 +174,29 @@ class ControladorTratamiento:
         with open("diagnosticos.txt", "w") as archivo:
             archivo.writelines(lineas)
 
-    def rankingDiagnosticos(self):
-        conteo_diagnosticos = {}
-        for consulta in self.listaConsultas:
-            codigo_diagnostico = consulta.diagnostico.getCodigo()
-            conteo_diagnosticos[codigo_diagnostico] = conteo_diagnosticos.get(codigo_diagnostico, 0) + 1
-        diagnosticos_ordenados = sorted(conteo_diagnosticos.items(), key=lambda x: x[1], reverse=True)
-        for codigo, frecuencia in diagnosticos_ordenados:
-            self.vista.mostrarRanking(self.controladorTratamiento.buscarDiagnostico(codigo),frecuencia)
+    def cambiarEstadoVacuna(self, vacuna):
+        objVacuna = self.buscarVacuna(vacuna)
+        objVacuna.cambiarEstado()
+        self.vista.limpiarListbox()
+        for vac in self.listaVacunas:
+            self.vista.insertarEnListados(f"{vac}-{vac.getEstado()}")
+        vacunas_habilitadas = [vacu for vacu in self.listaVacunas if vacu.isHabilitado()]
+        self.vista.configurarComboboxVacuna(vacunas_habilitadas)
+        self.cambiarEstadoArchivoVacuna(vacuna)
+
+    def cambiarEstadoArchivoVacuna(self, vacuna):
+        with open("vacunas.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == vacuna:
+                if datos[2] == "1":
+                    datos[2] = "0"
+                elif datos[2] == "0":
+                    datos[2] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("vacunas.txt", "w") as archivo:
+            archivo.writelines(lineas)
 
     def tratamientosXmascota(self):
         cant = 0

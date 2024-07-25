@@ -21,7 +21,7 @@ class ControladorRaza:
 
     def buscarRazaxNombre(self, nombre):
         for raza in self.listaRazas:
-            if raza.codigo == nombre:
+            if raza.nombre == nombre:
                 return raza
 
     def buscarCodigoxNombre(self, nombre):
@@ -44,19 +44,29 @@ class ControladorRaza:
             nueva_raza = f"\n{codigo},{nombre},{estado}"
             file.write(nueva_raza)
 
-    def cambiarEstadoRaza(self):
-        self.vista.mostrarLista(self.controladorRaza.listarInfoRazas())
-        raza = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objRaza = self.controladorRaza.buscarRaza(raza)
-        if altaObaja == "a":
-            objRaza.darAlta()
-            self.vista.mostrarDato(objRaza.getEstado())
-        elif altaObaja == "b":
-            objRaza.darBaja()
-            self.vista.mostrarDato(objRaza.getEstado())
-        else:
-            self.vista.mensajeError()
+    def cambiarEstadoRaza(self, raza):
+        objRaza = self.buscarRazaxNombre(raza)
+        objRaza.cambiarEstado()
+        self.vista.limpiarListbox()
+        for ra in self.listaRazas:
+            self.vista.insertarEnListados(f"{ra}-{ra.getEstado()}")
+        razas_habilitadas = [raz for raz in self.listaRazas if raz.isHabilitado()]
+        self.vista.configurarComboRazaMascota(razas_habilitadas)
+        self.cambiarEstadoArchivoRaza(raza)
+
+    def cambiarEstadoArchivoRaza(self, raza):
+        with open("razas.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == raza:
+                if datos[2] == "1":
+                    datos[2] = "0"
+                elif datos[2] == "0":
+                    datos[2] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("razas.txt", "w") as archivo:
+            archivo.writelines(lineas)
 
 
     def iniciar(self):

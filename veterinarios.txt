@@ -6,8 +6,9 @@
 6,Sofia Lopez,17704,0
 7,Ana Martinez,17085,0
 8,Juan Sanchez,17036,1
-9,Laura Fernandez,17207,1
+9,Laura Fernandez,17207,0
 10,Carlos Perez,17088,1
 11,Maria Gonzalez,17909,1
 12,Andres Romero,17210,0
 228,Gabriela Ortiz, 11549,1
+294,Pedro Juarez, 13946,0

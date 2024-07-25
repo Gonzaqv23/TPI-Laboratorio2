@@ -176,6 +176,13 @@ class Vista:
 
         self.fondo5 = tk.Label(self.tab5, image=self.fondo)
         self.fondo5.place(x=0, y=0, relwidth=1, relheight=1)
+        self.label_nombre_ranking = tk.Label(self.tab5, text="Ranking de Diagnosticos:")
+        self.label_nombre_ranking.pack(pady=15)
+
+    def configurarLabelRanking(self, diagnostico, frecuencia):
+        texto = f"{diagnostico} - Frecuencia: {frecuencia}"
+        self.label_ranking = tk.Label(self.tab5, text=texto).pack()
+
 
     def getElementoLista(self):
         item_seleccionado = self.listbox_listados.get(self.listbox_listados.curselection())

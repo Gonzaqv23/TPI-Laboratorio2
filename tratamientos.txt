@@ -1,6 +1,7 @@
-1,Dosis Vacuna,1
+1,Dosis Vacuna,0
 2,Aplicar yeso,1
 3,Administrar pastilla,1
 4,Aplicar inyeccion,1
 5,Aplicar crema,1
 336,Inyectar Antibiotico,1
+469,Poner fedula,0

@@ -5,7 +5,7 @@
 5,Cocker,0
 6,Border Collie,1
 7,Shiba Inu,0
-8,Bichon Maltes,1
+8,Bichon Maltes,0
 9,Terrier,0
 10,Cairn Terrier,1
 11,Persa,1

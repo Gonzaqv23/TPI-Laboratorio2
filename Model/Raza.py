@@ -24,6 +24,7 @@ class Raza:
             self.estado = 1
         elif int(self.estado) == 1:
             self.estado = 0
+
     def __str__(self):
         return f"{self.nombre}"
 

@@ -97,6 +97,15 @@ class ControladorConsulta:
     def imprimirFicha(self):
         self.vista.mostrarMensajeImprimir()
 
+    def rankingDiagnosticos(self):
+        conteo_diagnosticos = {}
+        for consulta in self.listaConsultas:
+            codigo_diagnostico = consulta.diagnostico.getCodigo()
+            conteo_diagnosticos[codigo_diagnostico] = conteo_diagnosticos.get(codigo_diagnostico, 0) + 1
+        diagnosticos_ordenados = sorted(conteo_diagnosticos.items(), key=lambda x: x[1], reverse=True)
+        for codigo, frecuencia in diagnosticos_ordenados:
+            self.vista.configurarLabelRanking(self.controladorTratamiento.buscarDiagnosticoxCodigo(codigo), frecuencia)
+
     def extraerItem(self):
         dato = self.vista.getElementoLista().split("-")
         item = dato[0]
@@ -113,6 +122,22 @@ class ControladorConsulta:
     def cambiarEstadoPropietario(self):
         propietario = self.extraerItem()
         self.controladorMascota.controladorPropietario.cambiarEstadoPropietario(propietario)
+
+    def cambiarEstadoRaza(self):
+        raza = self.extraerItem()
+        self.controladorMascota.controladorRaza.cambiarEstadoRaza(raza)
+
+    def cambiarEstadoTratamiento(self):
+        tratamiento = self.extraerItem()
+        self.controladorTratamiento.cambiarEstadoTratamiento(tratamiento)
+
+    def cambiarEstadoVeterinario(self):
+        veterinario = self.extraerItem()
+        self.controladorVeterinario.cambiarEstadoVeterinario(veterinario)
+
+    def cambiarEstadoVacuna(self):
+        vacuna = self.extraerItem()
+        self.controladorTratamiento.cambiarEstadoVacuna(vacuna)
 
     def mostrarListado(self):
         opcion = self.vista.getOpcion()
@@ -139,18 +164,23 @@ class ControladorConsulta:
             self.vista.limpiarListbox()
             for item in self.controladorTratamiento.listaTratamientos:
                 self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+                self.vista.configurarBotonCambiarEstado(self.cambiarEstadoTratamiento)
         elif opcion == 6:
             self.vista.limpiarListbox()
             for item in self.controladorVeterinario.listaVeterinarios:
                 self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+                self.vista.configurarBotonCambiarEstado(self.cambiarEstadoVeterinario)
         elif opcion == 7:
             self.vista.limpiarListbox()
             for item in self.controladorTratamiento.listaVacunas:
                 self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+                self.vista.configurarBotonCambiarEstado(self.cambiarEstadoVacuna)
         elif opcion == 8:
             self.vista.limpiarListbox()
             for item in self.controladorMascota.controladorRaza.listaRazas:
                 self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+            self.vista.configurarBotonCambiarEstado(self.cambiarEstadoRaza)
 
     def iniciar(self):
         self.cargarConsultas()
+        self.rankingDiagnosticos()
