@@ -58,19 +58,29 @@ class ControladorMascota:
             nueva_mascota = f"\n{codigo},{nombre},{propietario},{raza},{estado}"
             file.write(nueva_mascota)
 
-    def cambiarEstadoMascota(self):
-        self.vista.mostrarLista(self.mostrarInfo())
-        mascota = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
+    def cambiarEstadoMascota(self, mascota):
         objMascota = self.buscarMascota(mascota)
-        if altaObaja == "a":
-            objMascota.darAlta()
-            self.vista.mostrarDato(objMascota.getEstado())
-        elif altaObaja == "b":
-            objMascota.darBaja()
-            self.vista.mostrarDato(objMascota.getEstado())
-        else:
-            self.vista.mensajeError()
+        objMascota.cambiarEstado()
+        self.vista.limpiarListbox()
+        for masc in self.listaMascotas:
+            self.vista.insertarEnListados(f"{masc}-{masc.getEstado()}")
+        mascotas_habilitadas = [mascot for mascot in self.listaMascotas if mascot.isHabilitado()]
+        self.vista.configurarComboboxMascotas(mascotas_habilitadas)
+        self.cambiarEstadoArchivoMascotas(mascota)
+
+    def cambiarEstadoArchivoMascotas(self, mascota):
+        with open("mascotas.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == mascota:
+                if datos[4] == "1":
+                    datos[4] = "0"
+                elif datos[4] == "0":
+                    datos[4] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("mascotas.txt", "w") as archivo:
+            archivo.writelines(lineas)
 
 
     def mascotasXpropietario(self):

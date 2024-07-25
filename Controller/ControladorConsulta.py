@@ -9,18 +9,30 @@ class ControladorConsulta:
         self.controladorTratamiento = controladorTratamiento
         self.controladorVeterinario =controladorVeterinario
         self.listaConsultas = []
-        self.vista.configurarComboboxMascotas(self.controladorMascota.listaMascotas)
-        self.vista.configurarComboboxVeterinario(self.controladorVeterinario.listaVeterinarios)
-        self.vista.configurarComboboxDiagnostico(self.controladorTratamiento.listaDiagnosticos)
-        self.vista.configurarComboboxTratamiento(self.controladorTratamiento.listaTratamientos)
-        self.vista.configurarComboboxVacuna(self.controladorTratamiento.listaVacunas)
+        self.iniciarConfiguraciones()
+
+    def iniciarConfiguraciones(self):
+        mascotas_habilitadas = [masc for masc in self.controladorMascota.listaMascotas if masc.isHabilitado]
+        self.vista.configurarComboboxMascotas(mascotas_habilitadas)
+        veterinarios_habilitados = [vet for vet in self.controladorVeterinario.listaVeterinarios if vet.isHabilitado()]
+        self.vista.configurarComboboxVeterinario(veterinarios_habilitados)
+        diag_habilitados = [diag for diag in self.controladorTratamiento.listaDiagnosticos if diag.isHabilitado()]
+        self.vista.configurarComboboxDiagnostico(diag_habilitados)
+        trat_habilitados = [trat for trat in self.controladorTratamiento.listaTratamientos if trat.isHabilitado()]
+        self.vista.configurarComboboxTratamiento(trat_habilitados)
+        vac_habilitadas = [vac for vac in self.controladorTratamiento.listaVacunas if vac.isHabilitado()]
+        self.vista.configurarComboboxVacuna(vac_habilitadas)
         self.vista.configurarComboboxFicha(self.controladorMascota.listaMascotas)
+        lista_prop = self.controladorMascota.controladorPropietario.listaPropietarios
+        prop_habilitados = [prop for prop in lista_prop if prop.isHabilitado()]
+        self.vista.configurarComboPropietarioMascota(prop_habilitados)
+        lista_razas = self.controladorMascota.controladorRaza.listaRazas
+        razas_habilitadas = [raza for raza in lista_razas if raza.isHabilitado()]
+        self.vista.configurarComboRazaMascota(razas_habilitadas)
         self.vista.configurarBotonHacerConsulta(self.hacerConsulta)
         self.vista.configurarBotonListados(self.mostrarListado)
         self.vista.configurarBotonGenerar(self.generarFicha)
         self.vista.configurarBotonImprimir(self.imprimirFicha)
-        self.vista.configurarComboPropietarioMascota(self.controladorMascota.controladorPropietario.listaPropietarios)
-        self.vista.configurarComboRazaMascota(self.controladorMascota.controladorRaza.listaRazas)
 
     def cargarConsultas(self):
         with open("consultas.txt") as file:
@@ -85,6 +97,23 @@ class ControladorConsulta:
     def imprimirFicha(self):
         self.vista.mostrarMensajeImprimir()
 
+    def extraerItem(self):
+        dato = self.vista.getElementoLista().split("-")
+        item = dato[0]
+        return item
+
+    def cambiarEstadoMascota(self):
+        mascota = self.extraerItem()
+        self.controladorMascota.cambiarEstadoMascota(mascota)
+
+    def cambiarEstadoDiagnostico(self):
+        diagnostico = self.extraerItem()
+        self.controladorTratamiento.cambiarEstadoDiagnostico(diagnostico)
+
+    def cambiarEstadoPropietario(self):
+        propietario = self.extraerItem()
+        self.controladorMascota.controladorPropietario.cambiarEstadoPropietario(propietario)
+
     def mostrarListado(self):
         opcion = self.vista.getOpcion()
         if opcion == 1:
@@ -94,31 +123,34 @@ class ControladorConsulta:
         elif opcion == 2:
             self.vista.limpiarListbox()
             for item in self.controladorMascota.listaMascotas:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+            self.vista.configurarBotonCambiarEstado(self.cambiarEstadoMascota)
         elif opcion == 3:
             self.vista.limpiarListbox()
             for item in self.controladorTratamiento.listaDiagnosticos:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+            self.vista.configurarBotonCambiarEstado(self.cambiarEstadoDiagnostico)
         elif opcion == 4:
             self.vista.limpiarListbox()
             for item in self.controladorMascota.controladorPropietario.listaPropietarios:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
+            self.vista.configurarBotonCambiarEstado(self.cambiarEstadoPropietario)
         elif opcion == 5:
             self.vista.limpiarListbox()
             for item in self.controladorTratamiento.listaTratamientos:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
         elif opcion == 6:
             self.vista.limpiarListbox()
             for item in self.controladorVeterinario.listaVeterinarios:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
         elif opcion == 7:
             self.vista.limpiarListbox()
             for item in self.controladorTratamiento.listaVacunas:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
         elif opcion == 8:
             self.vista.limpiarListbox()
             for item in self.controladorMascota.controladorRaza.listaRazas:
-                self.vista.insertarEnListados(item)
+                self.vista.insertarEnListados(f"{item}-{item.getEstado()}")
 
     def iniciar(self):
         self.cargarConsultas()

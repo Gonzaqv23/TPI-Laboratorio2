@@ -17,13 +17,11 @@ class Vista:
         self.tab3 = tk.Frame(self.notebook)
         self.tab4 = tk.Frame(self.notebook)
         self.tab5 = tk.Frame(self.notebook)
-        self.tab6 = tk.Frame(self.notebook)
         self.notebook.add(self.tab1, text="Consultas")
         self.notebook.add(self.tab2, text="Listados")
         self.notebook.add(self.tab3, text="Ficha Medica")
         self.notebook.add(self.tab4, text="Registrar")
-        self.notebook.add(self.tab5, text="Altas y Bajas")
-        self.notebook.add(self.tab6, text="Informacion")
+        self.notebook.add(self.tab5, text="Informacion")
 
         # TAB 1: Realizar Consulta
         self.fondo1 = tk.Label(self.tab1, image=self.fondo)
@@ -60,26 +58,31 @@ class Vista:
         self.fondo2.place(x=0, y=0, relwidth=1, relheight=1)
         self.listbox_listados = tk.Listbox(self.tab2, width=75, height=25)
         self.listbox_listados.pack(pady=20)
+        self.label_cambiar_estado = tk.Label(self.tab2, text="Para cambiar estado seleccione Item "
+                                                             "y luego presione boton 'Cambiar Estado'")
+        self.label_cambiar_estado.pack()
         self.opcion = tk.IntVar()
         self.radio1 = ttk.Radiobutton(self.tab2, text="Consultas", value=1, variable=self.opcion)
-        self.radio1.place(x=180, y=440)
+        self.radio1.place(x=180, y=480)
         self.radio2 = ttk.Radiobutton(self.tab2, text="Mascotas", value=2, variable=self.opcion)
-        self.radio2.place(x=280, y=440)
+        self.radio2.place(x=280, y=480)
         self.radio3 = ttk.Radiobutton(self.tab2, text="Diagnosticos", value=3, variable=self.opcion)
-        self.radio3.place(x=380, y=440)
+        self.radio3.place(x=380, y=480)
         self.radio4 = ttk.Radiobutton(self.tab2, text="Propietarios", value=4, variable=self.opcion)
-        self.radio4.place(x=180, y=480)
+        self.radio4.place(x=180, y=520)
         self.radio5 = ttk.Radiobutton(self.tab2, text="Tratamientos", value=5, variable=self.opcion)
-        self.radio5.place(x=280, y=480)
+        self.radio5.place(x=280, y=520)
         self.radio6 = ttk.Radiobutton(self.tab2, text="Veterinarios", value=6, variable=self.opcion)
-        self.radio6.place(x=380, y=480)
+        self.radio6.place(x=380, y=520)
         self.radio7 = ttk.Radiobutton(self.tab2, text="Vacunas", value=7, variable=self.opcion)
-        self.radio7.place(x=180, y=520)
+        self.radio7.place(x=180, y=560)
         self.radio8 = ttk.Radiobutton(self.tab2, text="Razas", value=8, variable=self.opcion)
-        self.radio8.place(x=280, y=520)
+        self.radio8.place(x=280, y=560)
 
-        self.boton_listar = tk.Button(self.tab2, text="Listar", font=("Arial", 10))
-        self.boton_listar.place(x=300, y=580)
+        self.boton_listar = tk.Button(self.tab2, text="Listar", font=("Arial", 11, "bold"))
+        self.boton_listar.place(x=210, y=600)
+        self.boton_cambiar_estado = tk.Button(self.tab2, text="Cambiar Estado", font=("Arial", 11, "bold"))
+        self.boton_cambiar_estado.place(x=340, y=600)
 
         # TAB 3: Generar Ficha Medica
 
@@ -169,15 +172,14 @@ class Vista:
         self.boton_registrar_veterinario = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_veterinario.place(x=415, y=580)
 
-        #TAB 5: Altas y bajas
+        #TAB 5: Informacion
 
         self.fondo5 = tk.Label(self.tab5, image=self.fondo)
         self.fondo5.place(x=0, y=0, relwidth=1, relheight=1)
 
-        #TAB 6: Informacion
-
-        self.fondo6 = tk.Label(self.tab6, image=self.fondo)
-        self.fondo6.place(x=0, y=0, relwidth=1, relheight=1)
+    def getElementoLista(self):
+        item_seleccionado = self.listbox_listados.get(self.listbox_listados.curselection())
+        return item_seleccionado
 
     def configurarComboboxMascotas(self, lista):
         self.combobox_mascota["values"] = lista
@@ -202,6 +204,9 @@ class Vista:
 
     def configurarComboRazaMascota(self, lista):
         self.combo_raza_mascota["values"] = lista
+
+    def configurarBotonCambiarEstado(self, command):
+        self.boton_cambiar_estado.config(command=command)
 
     def configurarBotonHacerConsulta(self, command):
         self.boton_hacer_consulta.config(command=command)

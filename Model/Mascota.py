@@ -7,7 +7,7 @@ class Mascota:
         self.estado = estado
         self.fichaMedica = []
 
-    def isActiva(self):
+    def isHabilitado(self):
         if int(self.estado) == 1:
             return True
         else:
@@ -33,17 +33,17 @@ class Mascota:
         else:
             return f"{self.nombre} aun no tiene consultas"
 
-    def darAlta(self):
-        self.estado = 1
-
-    def darBaja(self):
-        self.estado = 0
-
     def getEstado(self):
-        if int(self.estado) == 1:
-            return f"{self.codigo} - {self.nombre} - Estado: Habilitado"
-        elif int(self.estado) == 0:
-            return f"{self.codigo} - {self.nombre} - Estado: NO habilitado"
+        if int(self.estado) == 0:
+            return f"-------Estado: Inhabilitado"
+        elif int(self.estado) == 1:
+            return f"-------Estado: Habilitado"
+
+    def cambiarEstado(self):
+        if int(self.estado) == 0:
+            self.estado = 1
+        elif int(self.estado) == 1:
+            self.estado = 0
 
     def __str__(self):
         return f"{self.nombre}"

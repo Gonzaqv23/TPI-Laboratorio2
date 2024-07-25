@@ -1,7 +1,7 @@
 1,Fecha Vacuna,1
 2,Esguince,1
-3,Gastroenteritis,1
+3,Gastroenteritis,0
 4,Parasitos,1
-5,Infeccion,1
+5,Infeccion,0
 180,Alergia Dermatologica,1
 42,Luxacion Articular,1

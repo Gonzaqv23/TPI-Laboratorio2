@@ -45,25 +45,30 @@ class ControladorPropietario:
             nuevo_propietario = f"\n{codigo},{nombre},{estado}"
             file.write(nuevo_propietario)
 
-    def cambiarEstadoPropietario(self):
-        self.vista.mostrarLista(self.controladorPropietario.listarPropietarios())
-        propietario = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objPropietario = self.controladorPropietario.buscarPropietario(propietario)
-        if altaObaja == "a":
-            objPropietario.darAlta()
-            self.vista.mostrarDato(objPropietario.getEstado())
-        elif altaObaja == "b":
-            objPropietario.darBaja()
-            self.vista.mostrarDato(objPropietario.getEstado())
-        else:
-            self.vista.mensajeError()
-
-    def listarPropietarios(self):
-        lista = []
+    def cambiarEstadoPropietario(self, propietario):
+        objPropietario = self.buscarPropietarioxNombre(propietario)
+        objPropietario.cambiarEstado()
+        self.vista.limpiarListbox()
         for prop in self.listaPropietarios:
-            lista.append(prop.getEstado())
-        return lista
+            self.vista.insertarEnListados(f"{prop}-{prop.getEstado()}")
+        prop_habilitados = [prop for prop in self.listaPropietarios if prop.isHabilitado()]
+        self.vista.configurarComboPropietarioMascota(prop_habilitados)
+        self.cambiarEstadoArchivoPropietario(propietario)
+
+    def cambiarEstadoArchivoPropietario(self, propietario):
+        with open("propietarios.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == propietario:
+                if datos[2] == "1":
+                    datos[2] = "0"
+                elif datos[2] == "0":
+                    datos[2] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("propietarios.txt", "w") as archivo:
+            archivo.writelines(lineas)
+
 
     def iniciar(self):
         self.cargarPropietarios()

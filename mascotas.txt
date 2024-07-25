@@ -1,11 +1,11 @@
-001,Pancho,1,10,1
+001,Pancho,1,10,0
 002,Ran Tan Plan,2,9,0
 003,Beethoven,3,8,1
 004,Bruno,4,7,1
 005,Niebla,5,6,0
 006,Pluto,6,5,1
 007,Rex,7,4,1
-008,Ayudante de Santa Claus,8,3,0
+008,Ayudante de Santa Claus,8,3,1
 009,Scooby Doo,9,2,1
 010,Dama y Golfo,10,1,0
 011,Snoopy,11,4,1

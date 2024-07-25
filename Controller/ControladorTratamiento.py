@@ -125,47 +125,29 @@ class ControladorTratamiento:
             file.write(nueva_vacuna)
 
 
-    def cambiarEstadoTratamiento(self):
-        self.vista.mostrarLista(self.mostrarInfoTratamientos())
-        tratamiento = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objTratamiento = self.buscarTratamiento(tratamiento)
-        if altaObaja == "a":
-            objTratamiento.darAlta()
-            self.vista.mostrarDato(objTratamiento.getEstado())
-        elif altaObaja == "b":
-            objTratamiento.darBaja()
-            self.vista.mostrarDato(objTratamiento.getEstado())
-        else:
-            self.vista.mensajeError()
+    def cambiarEstadoDiagnostico(self, diagnostico):
+        objDiagnostico = self.buscarDiagnostico(diagnostico)
+        objDiagnostico.cambiarEstado()
+        self.vista.limpiarListbox()
+        for diag in self.listaDiagnosticos:
+            self.vista.insertarEnListados(f"{diag}-{diag.getEstado()}")
+        diag_habilitados = [diag for diag in self.listaDiagnosticos if diag.isHabilitado()]
+        self.vista.configurarComboboxDiagnostico(diag_habilitados)
+        self.cambiarEstadoArchivoDiagnostico(diagnostico)
 
-    def cambiarEstadoVacuna(self):
-        self.vista.mostrarLista(self.mostrarInfoVacunas())
-        vacuna = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objVacuna = self.buscarVacuna(vacuna)
-        if altaObaja == "a":
-            objVacuna.darAlta()
-            self.vista.mostrarDato(objVacuna.getEstado())
-        elif altaObaja == "b":
-            objVacuna.darBaja()
-            self.vista.mostrarDato(objVacuna.getEstado())
-        else:
-            self.vista.mensajeError()
-
-    def cambiarEstadoDiagnostico(self):
-        self.vista.mostrarLista(self.controladorTratamiento.mostrarInfoDiagnosticos())
-        disgnostico = self.vista.getDato()
-        altaObaja = self.vista.altaObaja()
-        objDiagnostico = self.controladorTratamiento.buscarDiagnostico(disgnostico)
-        if altaObaja == "a":
-            objDiagnostico.darAlta()
-            self.vista.mostrarDato(objDiagnostico.getEstado())
-        elif altaObaja == "b":
-            objDiagnostico.darBaja()
-            self.vista.mostrarDato(objDiagnostico.getEstado())
-        else:
-            self.vista.mensajeError()
+    def cambiarEstadoArchivoDiagnostico(self, diagnostico):
+        with open("diagnosticos.txt") as file:
+            lineas = file.readlines()
+        for i, linea in enumerate(lineas):
+            datos = linea.strip().split(",")
+            if datos[1] == diagnostico:
+                if datos[2] == "1":
+                    datos[2] = "0"
+                elif datos[2] == "0":
+                    datos[2] = "1"
+                lineas[i] = ",".join(datos) + "\n"
+        with open("diagnosticos.txt", "w") as archivo:
+            archivo.writelines(lineas)
 
     def rankingDiagnosticos(self):
         conteo_diagnosticos = {}
