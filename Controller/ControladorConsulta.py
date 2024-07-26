@@ -104,7 +104,11 @@ class ControladorConsulta:
             conteo_diagnosticos[codigo_diagnostico] = conteo_diagnosticos.get(codigo_diagnostico, 0) + 1
         diagnosticos_ordenados = sorted(conteo_diagnosticos.items(), key=lambda x: x[1], reverse=True)
         for codigo, frecuencia in diagnosticos_ordenados:
-            self.vista.configurarLabelRanking(self.controladorTratamiento.buscarDiagnosticoxCodigo(codigo), frecuencia)
+            self.vista.setElementoListaRanking(self.controladorTratamiento.buscarDiagnosticoxCodigo(codigo), frecuencia)
+
+    def consultasXmascotas(self):
+        for masc in self.controladorMascota.listaMascotas:
+            self.vista.setElementoListaConsultasxMascotas(masc.getCantidadConsultas())
 
     def extraerItem(self):
         dato = self.vista.getElementoLista().split("-")
@@ -184,3 +188,4 @@ class ControladorConsulta:
     def iniciar(self):
         self.cargarConsultas()
         self.rankingDiagnosticos()
+        self.consultasXmascotas()

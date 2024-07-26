@@ -85,21 +85,12 @@ class ControladorMascota:
 
     def mascotasXpropietario(self):
         cant = 0
-        self.vista.mostrarLista(self.mostrarInfoPropietarios())
         propietario = self.vista.getDato()
         objPropietario = self.controladorPropietario.buscarPropietario(propietario)
         for masc in self.listaMascotas:
             if masc.getPropietario() == objPropietario:
                 cant += 1
         self.vista.mostrarMascotasXpropietario(cant)
-
-
-    def consultasXmascotas(self):
-        for masc in self.listaMascotas:
-            self.vista.mostrarDato(masc.getCantidadConsultas())
-
-    def tratamientosXmascotas(self):
-        pass
 
     def iniciar(self):
         self.cargarMascotas()

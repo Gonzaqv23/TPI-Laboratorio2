@@ -164,7 +164,8 @@ class Vista:
         self.boton_registrar_vacuna = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_vacuna.place(x=105, y=580)
 
-        self.label_registrar_veterinario = tk.Label(self.tab4, text="Registrar Nuevo Veterinario", font=("Aerial", 11, "bold"))
+        self.label_registrar_veterinario = tk.Label(self.tab4, text="Registrar Nuevo Veterinario",
+                                                    font=("Aerial", 11, "bold"))
         self.label_registrar_veterinario.place(x=370, y=490)
         self.nombre_veterinario = tk.StringVar()
         self.entrada_nombre_veterinario = tk.Entry(self.tab4, textvariable=self.nombre_veterinario)
@@ -176,13 +177,23 @@ class Vista:
 
         self.fondo5 = tk.Label(self.tab5, image=self.fondo)
         self.fondo5.place(x=0, y=0, relwidth=1, relheight=1)
-        self.label_nombre_ranking = tk.Label(self.tab5, text="Ranking de Diagnosticos:")
+        self.label_nombre_ranking = tk.Label(self.tab5, text="Ranking de Diagnosticos:",
+                                             font=("Aerial", 12, "bold"))
         self.label_nombre_ranking.pack(pady=15)
+        self.lista_ranking = tk.Listbox(self.tab5, width=35, height=6)
+        self.lista_ranking.pack()
+        self.label_titulo_consXmasc = tk.Label(self.tab5, text="Cantidad de Consultas por Mascota:",
+                                            font=("Aerial", 12, "bold"))
+        self.label_titulo_consXmasc.pack(pady=15)
+        self.lista_consultas_x_mascotas = tk.Listbox(self.tab5, width=40, height=25)
+        self.lista_consultas_x_mascotas.pack()
 
-    def configurarLabelRanking(self, diagnostico, frecuencia):
+    def setElementoListaRanking(self, diagnostico, frecuencia):
         texto = f"{diagnostico} - Frecuencia: {frecuencia}"
-        self.label_ranking = tk.Label(self.tab5, text=texto).pack()
+        self.lista_ranking.insert(tk.END, texto)
 
+    def setElementoListaConsultasxMascotas(self, dato):
+        self.lista_consultas_x_mascotas.insert(tk.END, dato)
 
     def getElementoLista(self):
         item_seleccionado = self.listbox_listados.get(self.listbox_listados.curselection())

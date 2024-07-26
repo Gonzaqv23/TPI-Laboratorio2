@@ -25,3 +25,4 @@
 489,Pepita,2,9,1
 410,Asterisco,5,2,1
 154,Gato con Botas,402,12,1
+377,Pancha,188,328,1
