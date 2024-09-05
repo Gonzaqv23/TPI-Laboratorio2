@@ -3,7 +3,7 @@
 3,Martin Gomez,17301,1
 4,Valeria Torres,17402,1
 5,Diego Rodriguez,17603,1
-6,Sofia Lopez,17704,0
+6,Sofia Lopez,17704,1
 7,Ana Martinez,17085,0
 8,Juan Sanchez,17036,1
 9,Laura Fernandez,17207,0

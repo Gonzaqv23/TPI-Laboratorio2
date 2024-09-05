@@ -52,6 +52,8 @@ class Vista:
 
         self.boton_hacer_consulta = tk.Button(self.tab1, text="Hacer Consulta")
         self.boton_hacer_consulta.pack(pady=35)
+        self.boton_hacer_consulta.config(relief="groove", bg="#7B7D81", width="16", height=2,
+                                         cursor="hand2", font=("Calibri", 14, "bold"), fg="#FEFEFE")
 
         # TAB 2: Mostrar listados
         self.fondo2 = tk.Label(self.tab2, image=self.fondo)
@@ -80,9 +82,13 @@ class Vista:
         self.radio8.place(x=280, y=560)
 
         self.boton_listar = tk.Button(self.tab2, text="Listar", font=("Arial", 11, "bold"))
-        self.boton_listar.place(x=210, y=600)
+        self.boton_listar.place(x=200, y=600)
+        self.boton_listar.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                         cursor="hand2", font=("Calibri", 14, "bold"), fg="#FEFEFE")
         self.boton_cambiar_estado = tk.Button(self.tab2, text="Cambiar Estado", font=("Arial", 11, "bold"))
-        self.boton_cambiar_estado.place(x=340, y=600)
+        self.boton_cambiar_estado.place(x=350, y=600)
+        self.boton_cambiar_estado.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                         cursor="hand2", font=("Calibri", 14, "bold"), fg="#FEFEFE")
 
         # TAB 3: Generar Ficha Medica
 
@@ -97,9 +103,13 @@ class Vista:
         self.combobox_ficha_masc = ttk.Combobox(self.tab3, width=40)
         self.combobox_ficha_masc.pack()
         self.boton_generar_ficha = tk.Button(self.tab3, text="Generar", font=("Aerial", 12))
-        self.boton_generar_ficha.place(x=220, y=580)
+        self.boton_generar_ficha.place(x=190, y=580)
+        self.boton_generar_ficha.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                         cursor="hand2", font=("Calibri", 14, "bold"), fg="#FEFEFE")
         self.boton_imprimir_ficha = tk.Button(self.tab3, text="Imprimir", font=("Aerial", 12))
-        self.boton_imprimir_ficha.place(x=380, y=580)
+        self.boton_imprimir_ficha.place(x=350, y=580)
+        self.boton_imprimir_ficha.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                         cursor="hand2", font=("Calibri", 14, "bold"), fg="#FEFEFE")
 
         #TAB 4: Registros
 
@@ -122,6 +132,8 @@ class Vista:
         self.combo_raza_mascota.place(x=145, y=100)
         self.boton_registrar_mascota = tk.Button(self.tab4, text="Registrar")
         self.boton_registrar_mascota.place(x=415, y=100)
+        self.boton_registrar_mascota.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                         cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
 
         self.label_registrar_propietario = tk.Label(self.tab4, text="Registrar Nuevo Propietario", font=("Aerial", 11, "bold"))
@@ -130,7 +142,9 @@ class Vista:
         self.entrada_nombre_propietario = tk.Entry(self.tab4, textvariable=self.nombre_propietario)
         self.entrada_nombre_propietario.place(x=75, y=220)
         self.boton_registrar_propietario = tk.Button(self.tab4, text="Registrar")
-        self.boton_registrar_propietario.place(x=105, y=250)
+        self.boton_registrar_propietario.place(x=90, y=260)
+        self.boton_registrar_propietario.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                            cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
         self.label_registrar_diagnostico = tk.Label(self.tab4, text="Registrar Nuevo Diagnostico", font=("Aerial", 11, "bold"))
         self.label_registrar_diagnostico.place(x=370, y=170)
@@ -138,7 +152,9 @@ class Vista:
         self.entrada_nombre_diagnostico = tk.Entry(self.tab4, textvariable=self.nombre_diagnostico)
         self.entrada_nombre_diagnostico.place(x=385, y=220)
         self.boton_registrar_diagnostico = tk.Button(self.tab4, text="Registrar")
-        self.boton_registrar_diagnostico.place(x=415, y=250)
+        self.boton_registrar_diagnostico.place(x=400, y=260)
+        self.boton_registrar_diagnostico.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                            cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
         self.label_registrar_raza = tk.Label(self.tab4, text="Registrar Nueva Raza", font=("Aerial", 11, "bold"))
         self.label_registrar_raza.place(x=60, y=320)
@@ -146,7 +162,9 @@ class Vista:
         self.entrada_nombre_raza = tk.Entry(self.tab4, textvariable=self.nombre_raza)
         self.entrada_nombre_raza.place(x=75, y=385)
         self.boton_registrar_raza = tk.Button(self.tab4, text="Registrar")
-        self.boton_registrar_raza.place(x=105, y=415)
+        self.boton_registrar_raza.place(x=90, y=420)
+        self.boton_registrar_raza.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                            cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
         self.label_registrar_tratamiento = tk.Label(self.tab4, text="Registrar Nuevo Tratamiento", font=("Aerial", 11, "bold"))
         self.label_registrar_tratamiento.place(x=370, y=320)
@@ -154,7 +172,9 @@ class Vista:
         self.entrada_nombre_tratamiento = tk.Entry(self.tab4, textvariable=self.nombre_tratamiento)
         self.entrada_nombre_tratamiento.place(x=385, y=385)
         self.boton_registrar_tratamiento = tk.Button(self.tab4, text="Registrar")
-        self.boton_registrar_tratamiento.place(x=415, y=415)
+        self.boton_registrar_tratamiento.place(x=400, y=420)
+        self.boton_registrar_tratamiento.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                            cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
         self.label_registrar_vacuna = tk.Label(self.tab4, text="Registrar Nueva Vacuna", font=("Aerial", 11, "bold"))
         self.label_registrar_vacuna.place(x=60, y=490)
@@ -162,7 +182,9 @@ class Vista:
         self.entrada_nombre_vacuna = tk.Entry(self.tab4, textvariable=self.nombre_vacuna)
         self.entrada_nombre_vacuna.place(x=75, y=545)
         self.boton_registrar_vacuna = tk.Button(self.tab4, text="Registrar")
-        self.boton_registrar_vacuna.place(x=105, y=580)
+        self.boton_registrar_vacuna.place(x=90, y=590)
+        self.boton_registrar_vacuna.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                            cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
         self.label_registrar_veterinario = tk.Label(self.tab4, text="Registrar Nuevo Veterinario",
                                                     font=("Aerial", 11, "bold"))
@@ -171,7 +193,9 @@ class Vista:
         self.entrada_nombre_veterinario = tk.Entry(self.tab4, textvariable=self.nombre_veterinario)
         self.entrada_nombre_veterinario.place(x=385, y=545)
         self.boton_registrar_veterinario = tk.Button(self.tab4, text="Registrar")
-        self.boton_registrar_veterinario.place(x=415, y=580)
+        self.boton_registrar_veterinario.place(x=400, y=590)
+        self.boton_registrar_veterinario.config(relief="groove", bg="#7B7D81", width="12", height=1,
+                                            cursor="hand2", font=("Calibri", 12, "bold"), fg="#FEFEFE")
 
         #TAB 5: Informacion
 

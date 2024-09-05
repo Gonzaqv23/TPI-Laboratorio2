@@ -8,7 +8,7 @@
 8,Ana Martinez,1
 9,Diego Sanchez,0
 10,Valentina Romero,1
-11,Martin Herrera,0
+11,Martin Herrera,1
 12,Sofia Castro,1
 176,Horacio Farias,1
 123,Luciana QV,1
